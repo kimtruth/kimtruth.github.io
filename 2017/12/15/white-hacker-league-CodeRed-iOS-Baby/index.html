@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    
+    <title>화이트해커리그(CodeRed) - iOS Baby | kimtruth&#39;s Blog</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="화이트해커리그">
+    
+    <meta name="description" content="[MOBILE] Do you know storyboard?  iOS 앱 리버싱 문제다.storyboard를 리버싱하는 의도로 출제를 했다.이 문제의 풀이법은 정적 분석, 동적 분석 모두 존재한다. Solution 1 (정적 분석)먼저 ipa파일을 zip으로 확장자를 바꾼 뒤, 압축해제해준다.그러면 ios_baby/Payload/ios_baby.app/Ba">
+<meta name="keywords" content="화이트해커리그">
+<meta property="og:type" content="article">
+<meta property="og:title" content="화이트해커리그(CodeRed) - iOS Baby">
+<meta property="og:url" content="https://kimtruth.github.io/2017/12/15/white-hacker-league-CodeRed-iOS-Baby/index.html">
+<meta property="og:site_name" content="kimtruth&#39;s Blog">
+<meta property="og:description" content="[MOBILE] Do you know storyboard?  iOS 앱 리버싱 문제다.storyboard를 리버싱하는 의도로 출제를 했다.이 문제의 풀이법은 정적 분석, 동적 분석 모두 존재한다. Solution 1 (정적 분석)먼저 ipa파일을 zip으로 확장자를 바꾼 뒤, 압축해제해준다.그러면 ios_baby/Payload/ios_baby.app/Ba">
+<meta property="og:locale" content="kr">
+<meta property="og:image" content="https://kimtruth.github.io/2017/12/15/white-hacker-league-CodeRed-iOS-Baby/1.png">
+<meta property="og:updated_time" content="2018-03-04T03:14:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="화이트해커리그(CodeRed) - iOS Baby">
+<meta name="twitter:description" content="[MOBILE] Do you know storyboard?  iOS 앱 리버싱 문제다.storyboard를 리버싱하는 의도로 출제를 했다.이 문제의 풀이법은 정적 분석, 동적 분석 모두 존재한다. Solution 1 (정적 분석)먼저 ipa파일을 zip으로 확장자를 바꾼 뒤, 압축해제해준다.그러면 ios_baby/Payload/ios_baby.app/Ba">
+<meta name="twitter:image" content="https://kimtruth.github.io/2017/12/15/white-hacker-league-CodeRed-iOS-Baby/1.png">
+<meta property="fb:admins" content="1984693938443783">
+<meta property="fb:app_id" content="1984693938443783">
+    
+
+    
+
+    
+        <link rel="icon" href="/images/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-88959679-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+
+<link rel="alternate" href="/rss2.xml" title="kimtruth's Blog" type="application/rss+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+            <!--
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+            -->
+            <div id="header-title" style="text-align:left">
+                <h1>
+                    <a href="/" style="font-size:40px;color:#fff; font-weight:bold; font-style: italic;text-decoration: none;">kimtruth's Blog</a>
+                </h1>
+            </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Inici</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Development/">Development</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Development/Algorithm/">Algorithm</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Development/iOS/">iOS</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/">Hacking</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Crpto/">Crpto</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Crypto/">Crypto</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Forensic/">Forensic</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Misc/">Misc</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Network/">Network</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Pwnable/">Pwnable</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Reversing/">Reversing</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Web/">Web</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Question/">Question</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Story/">Story</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="https://www.rocketpunch.com/@kimtruth">Quant a</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Cercar" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'categories',
+            TAGS: 'etiquetes',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Hacking/">Hacking</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Hacking/Reversing/">Reversing</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-white-hacker-league-CodeRed-iOS-Baby" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        화이트해커리그(CodeRed) - iOS Baby
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/12/15/white-hacker-league-CodeRed-iOS-Baby/" class="article-date">
+            <time datetime="2017-12-15T06:57:46.000Z" itemprop="datePublished">2017-12-15</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/화이트해커리그/">화이트해커리그</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <blockquote>
+<p>[MOBILE]</p>
+<p>Do you know storyboard?</p>
+</blockquote>
+<p>iOS 앱 리버싱 문제다.<br>storyboard를 리버싱하는 의도로 출제를 했다.<br>이 문제의 풀이법은 정적 분석, 동적 분석 모두 존재한다.</p>
+<h2 id="Solution-1-정적-분석"><a href="#Solution-1-정적-분석" class="headerlink" title="Solution 1 (정적 분석)"></a>Solution 1 (정적 분석)</h2><p>먼저 <code>ipa</code>파일을 <code>zip</code>으로 확장자를 바꾼 뒤, 압축해제해준다.<br>그러면 <code>ios_baby/Payload/ios_baby.app/Base.lproj/Main.storyboardc</code>안에 두 개의 <code>.nib</code>파일이 있는것을 확인할 수 있을 것이다.</p>
+<img src="/2017/12/15/white-hacker-league-CodeRed-iOS-Baby/1.png">
+<p><code>.nib</code>파일들을 분석하기 위해서 <code>https://github.com/davidquesada/ibtool</code>을 사용하기로 한다.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python ibtool/ibtool.py ./BYZ-38-t0r-view-8bC-Xf-vdC.nib/objects-11.0+.nib</span><br></pre></td></tr></table></figure>
+<p>잘 살펴보면 <code>UIView</code>와 <code>UILabel</code>이 보이는 것을 알 수 있다.<br><code>UIView</code>는 한 개만 있는데 <code>Storyboard</code>에서 만든 <code>ViewController</code>안에 있는 기본적인 <code>UIView</code>일 것으로 별 볼일은 없다.<br><code>UILabel</code>를 살펴보는것이 중요하다. <code>UILabel</code>은 총 18개가 존재하고 있었다.</p>
+<p>일단 필요한 정보만 뽑아보면 이렇다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br></pre></td><td class="code"><pre><span class="line">3: UILabel</span><br><span class="line">UICenter = (196.0, 97.5)</span><br><span class="line">UIText = @9</span><br><span class="line"></span><br><span class="line">  9: NSLocalizableString</span><br><span class="line">  NS.bytes = 8</span><br><span class="line"></span><br><span class="line">5: UILabel</span><br><span class="line">UICenter = (74.0, 97.5)</span><br><span class="line">UIText = @13</span><br><span class="line"></span><br><span class="line">  13: NSLocalizableString</span><br><span class="line">  NS.bytes = R</span><br><span class="line"></span><br><span class="line">18: UILabel</span><br><span class="line">UICenter = (154.0, 96.5)</span><br><span class="line">UIText = @110</span><br><span class="line"></span><br><span class="line">  110: NSLocalizableString</span><br><span class="line">  NS.bytes = z</span><br><span class="line"></span><br><span class="line">43: UILabel</span><br><span class="line">UICenter = (249.0, 96.5)</span><br><span class="line">UIText = @40</span><br><span class="line"></span><br><span class="line">  40: NSLocalizableString</span><br><span class="line">  NS.bytes = q</span><br><span class="line"></span><br><span class="line">45: UILabel</span><br><span class="line">UICenter = (132.0, 97.5)</span><br><span class="line">UIText = @60</span><br><span class="line"></span><br><span class="line">  60: NSLocalizableString</span><br><span class="line">	NS.bytes = a</span><br><span class="line"></span><br><span class="line">47: UILabel</span><br><span class="line">UICenter = (93.0, 97.5)</span><br><span class="line">UIText = @34</span><br><span class="line"></span><br><span class="line">  34: NSLocalizableString</span><br><span class="line">  NS.bytes = &#123;</span><br><span class="line"></span><br><span class="line">48: UILabel</span><br><span class="line">UICenter = (117.0, 97.5)</span><br><span class="line">UIText = @22</span><br><span class="line"></span><br><span class="line">  22: NSLocalizableString</span><br><span class="line">  NS.bytes = 3</span><br><span class="line"></span><br><span class="line">51: UILabel</span><br><span class="line">UICenter = (289.0, 97.5)</span><br><span class="line">UIText = @103</span><br><span class="line"></span><br><span class="line">  103: NSLocalizableString</span><br><span class="line">  NS.bytes = a</span><br><span class="line"></span><br><span class="line">58: UILabel</span><br><span class="line">UICenter = (211.0, 97.5)</span><br><span class="line">UIText = @44</span><br><span class="line"></span><br><span class="line">  44: NSLocalizableString</span><br><span class="line">  NS.bytes = 9</span><br><span class="line"></span><br><span class="line">62: UILabel</span><br><span class="line">UICenter = (54.0, 97.5)</span><br><span class="line">UIText = @55</span><br><span class="line"></span><br><span class="line">  55: NSLocalizableString</span><br><span class="line">	NS.bytes = C</span><br><span class="line"></span><br><span class="line">90: UILabel</span><br><span class="line">UICenter = (187.0, 343.5)</span><br><span class="line">UIText = @75</span><br><span class="line"></span><br><span class="line">  75: NSLocalizableString</span><br><span class="line">  NS.bytes = YOU CAN&apos;T SEE THIS</span><br><span class="line"></span><br><span class="line">91: UILabel</span><br><span class="line">UICenter = (224.0, 97.5)</span><br><span class="line">UIText = @29</span><br><span class="line"></span><br><span class="line">  29: NSLocalizableString</span><br><span class="line">  NS.bytes = _</span><br><span class="line"></span><br><span class="line">92: UILabel</span><br><span class="line">UICenter = (274.0, 97.5)</span><br><span class="line">UIText = @74</span><br><span class="line"></span><br><span class="line">  74: NSLocalizableString</span><br><span class="line">  NS.bytes = r</span><br><span class="line"></span><br><span class="line">96: UILabel</span><br><span class="line">UICenter = (239.0, 96.5)</span><br><span class="line">UIText = @67</span><br><span class="line"></span><br><span class="line">  67: NSLocalizableString</span><br><span class="line">  NS.bytes = b</span><br><span class="line"></span><br><span class="line">98: UILabel</span><br><span class="line">UICenter = (261.0, 96.5)</span><br><span class="line">UIText = @17</span><br><span class="line"></span><br><span class="line">  17: NSLocalizableString</span><br><span class="line">  NS.bytes = _</span><br><span class="line"></span><br><span class="line">100: UILabel</span><br><span class="line">UICenter = (174.0, 96.5)</span><br><span class="line">UIText = @89</span><br><span class="line"></span><br><span class="line">  89: NSLocalizableString</span><br><span class="line">  NS.bytes = 3</span><br><span class="line"></span><br><span class="line">118: UILabel</span><br><span class="line">UICenter = (104.0, 97.5)</span><br><span class="line">UIText = @57</span><br><span class="line"></span><br><span class="line">  57: NSLocalizableString</span><br><span class="line">  NS.bytes = 5</span><br><span class="line"></span><br><span class="line">120: UILabel</span><br><span class="line">UICenter = (354.0, 97.5)</span><br><span class="line">UIText = @94</span><br><span class="line"></span><br><span class="line">  94: NSLocalizableString</span><br><span class="line">  	NS.bytes = &#125;</span><br></pre></td></tr></table></figure>
+<p><code>UICenter</code>에서 알려주는 <code>x</code>, <code>y</code>값의 좌표를 기반으로 해서<code>NSLocalizableString</code>의 <code>NS.bytes</code>값으로 <code>text</code>를 잘 정리해주면 <code>flag</code>가 나오게 된다.</p>
+<blockquote>
+<p>flag : CR{53az389_bq_ra}</p>
+</blockquote>
+<h2 id="Solution-2-동적-분석"><a href="#Solution-2-동적-분석" class="headerlink" title="Solution 2 (동적 분석)"></a>Solution 2 (동적 분석)</h2><p>현재 탈옥한 iPhone을 가진게 없어서 non-jailbreak된 기기로 분석하는 것을 기준으로 작성하겠다.<br>먼저 <code>ipa</code>파일에 <code>Frida</code>로 분석하기 위한 <code>FridaGadget.dylib</code>를 주입하고 <code>ipa</code>를 설치하기 위해서 <a href="https://github.com/dpnishant/appmon" target="_blank" rel="noopener">appmon</a>의 <code>ipa installer</code>를 사용하기로 했다.</p>
+<p><code>ipa installer</code>로 앱을 잘 설치해준 다음 <code>frida</code>를 통해 분석을 시작한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">~ ❯❯❯ frida-ps -U</span><br><span class="line">  PID  Name</span><br><span class="line">-----  ------</span><br><span class="line">12831  Gadget</span><br><span class="line">~ ❯❯❯ frida -n Gadget -U</span><br><span class="line"> ____</span><br><span class="line">/ _  |   Frida 10.1.4 - A world-class dynamic instrumentation framework</span><br><span class="line">| (_| |</span><br><span class="line">&gt; _  |   Commands:</span><br><span class="line">/_/ |_|       help      -&gt; Displays the help system</span><br><span class="line">. . . .       object?   -&gt; Display information about &apos;object&apos;</span><br><span class="line">. . . .       exit/quit -&gt; Exit</span><br><span class="line">. . . .</span><br><span class="line">. . . .   More info at http://www.frida.re/docs/home/</span><br><span class="line"></span><br><span class="line">[USB::iPhone::Gadget]-&gt; console.log(ObjC.classes.UIWindow.keyWindow().rootViewController().view().subviews().toString())</span><br><span class="line">(</span><br><span class="line">   &quot;&lt;UILabel: 0x103e10080; frame = (83 87; 42 21); text = &apos;5&apos;; opaque = NO; autoresize = RM+BM; userInteractionEnabled = NO; layer = &lt;_UILabelLayer: 0x1c408afa0&gt;&gt;&quot;,</span><br><span class="line">   &quot;&lt;UILabel: 0x103e10760; frame = (96 87; 42 21); text = &apos;3&apos;; opaque = NO; autoresize = RM+BM; userInteractionEnabled = NO; layer = &lt;_UILabelLayer: 0x1c408af00&gt;&gt;&quot;,</span><br><span class="line">   &quot;&lt;UILabel: 0x103e10c80; frame = (133 86; 42 21); text = &apos;z&apos;; opaque = NO; autoresize = RM+BM; userInteractionEnabled = NO; layer = &lt;_UILabelLayer: 0x1c408b130&gt;&gt;&quot;,</span><br><span class="line">   &quot;&lt;UILabel: 0x103e10f60; frame = (253 87; 42 21); text = &apos;r&apos;; opaque = NO; autoresize = RM+BM; userInteractionEnabled = NO; layer = &lt;_UILabelLayer: 0x1c408b1d0&gt;&gt;&quot;,</span><br><span class="line">   &quot;&lt;UILabel: 0x103e11240; frame = (190 87; 42 21); text = &apos;9&apos;; opaque = NO; autoresize = RM+BM; userInteractionEnabled = NO; layer = &lt;_UILabelLayer: 0x1c408b270&gt;&gt;&quot;,</span><br><span class="line">   &quot;&lt;UILabel: 0x103e11520; frame = (240 86; 42 21); text = &apos;_&apos;; opaque = NO; autoresize = RM+BM; userInteractionEnabled = NO; layer = &lt;_UILabelLayer: 0x1c408b310&gt;&gt;&quot;,</span><br><span class="line">   &quot;&lt;UILabel: 0x103e11800; frame = (268 87; 42 21); text = &apos;a&apos;; opaque = NO; autoresize = RM+BM; userInteractionEnabled = NO; layer = &lt;_UILabelLayer: 0x1c408b3b0&gt;&gt;&quot;,</span><br><span class="line">   &quot;&lt;UILabel: 0x103e11ae0; frame = (218 86; 42 21); text = &apos;b&apos;; opaque = NO; autoresize = RM+BM; userInteractionEnabled = NO; layer = &lt;_UILabelLayer: 0x1c408b450&gt;&gt;&quot;,</span><br><span class="line">   &quot;&lt;UILabel: 0x103e11dc0; frame = (228 86; 42 21); text = &apos;q&apos;; opaque = NO; autoresize = RM+BM; userInteractionEnabled = NO; layer = &lt;_UILabelLayer: 0x1c408b4f0&gt;&gt;&quot;,</span><br><span class="line">   &quot;&lt;UILabel: 0x103e120a0; frame = (53 87; 42 21); text = &apos;R&apos;; opaque = NO; autoresize = RM+BM; userInteractionEnabled = NO; layer = &lt;_UILabelLayer: 0x1c408b590&gt;&gt;&quot;,</span><br><span class="line">   &quot;&lt;UILabel: 0x103e127e0; frame = (333 87; 42 21); text = &apos;&#125;&apos;; opaque = NO; autoresize = RM+BM; userInteractionEnabled = NO; layer = &lt;_UILabelLayer: 0x1c408b630&gt;&gt;&quot;,</span><br><span class="line">   &quot;&lt;UILabel: 0x103e12ac0; frame = (111 87; 42 21); text = &apos;a&apos;; opaque = NO; autoresize = RM+BM; userInteractionEnabled = NO; layer = &lt;_UILabelLayer: 0x1c408b6d0&gt;&gt;&quot;,</span><br><span class="line">   &quot;&lt;UILabel: 0x103e12da0; frame = (72 87; 42 21); text = &apos;&#123;&apos;; opaque = NO; autoresize = RM+BM; userInteractionEnabled = NO; layer = &lt;_UILabelLayer: 0x1c408b770&gt;&gt;&quot;,</span><br><span class="line">   &quot;&lt;UILabel: 0x103e13080; frame = (175 87; 42 21); text = &apos;8&apos;; opaque = NO; autoresize = RM+BM; userInteractionEnabled = NO; layer = &lt;_UILabelLayer: 0x1c408b810&gt;&gt;&quot;,</span><br><span class="line">   &quot;&lt;UILabel: 0x103e13360; frame = (153 86; 42 21); text = &apos;3&apos;; opaque = NO; autoresize = RM+BM; userInteractionEnabled = NO; layer = &lt;_UILabelLayer: 0x1c408b8b0&gt;&gt;&quot;,</span><br><span class="line">   &quot;&lt;UILabel: 0x103e13840; frame = (33 87; 42 21); text = &apos;C&apos;; opaque = NO; autoresize = RM+BM; userInteractionEnabled = NO; layer = &lt;_UILabelLayer: 0x1c408b950&gt;&gt;&quot;,</span><br><span class="line">   &quot;&lt;UILabel: 0x103e13b20; frame = (203 87; 42 21); text = &apos;_&apos;; opaque = NO; autoresize = RM+BM; userInteractionEnabled = NO; layer = &lt;_UILabelLayer: 0x1c408b9f0&gt;&gt;&quot;,</span><br><span class="line">   &quot;&lt;UILabel: 0x103e13e00; frame = (0 5; 375 812); text = &apos;YOU CAN&apos;T SEE THIS&apos;; opaque = NO; autoresize = RM+BM; userInteractionEnabled = NO; layer = &lt;_UILabelLayer: 0x1c408ba90&gt;&gt;&quot;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p><code>Frida</code>를 통해 현재 보여지고 있는 <code>view</code>의 <code>subview</code>들을 모두 볼 수 있다. 하지만 아이폰 화면엔 <code>YOU CAN&#39;T SEE THIS</code>만 보인다.</p>
+<img src="/2017/12/15/white-hacker-league-CodeRed-iOS-Baby/2.png">
+<p>소스코드를 작성해서 해당 <code>UILabel</code>을 지워보기로 했다.</p>
+<h3 id="solve-js"><a href="#solve-js" class="headerlink" title="solve.js"></a>solve.js</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> view = ObjC.classes.UIWindow.keyWindow().rootViewController().view();</span><br><span class="line"><span class="keyword">var</span> subviews = view.subviews();</span><br><span class="line"><span class="keyword">var</span> count = subviews.count();</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">    <span class="keyword">var</span> x = subviews.objectAtIndex_(i);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"&lt;"</span> + x.$className + <span class="string">": "</span> + x.handle + <span class="string">":"</span> + x.text() + <span class="string">"&gt;"</span>);</span><br><span class="line">    <span class="keyword">if</span> (x.text() == <span class="string">"YOU CAN'T SEE THIS"</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(x)</span><br><span class="line">        x.removeFromSuperview()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>성공적으로 <code>flag</code>가 보인다.<br><img src="/2017/12/15/white-hacker-league-CodeRed-iOS-Baby/3.png"></p>
+<blockquote>
+<p>flag : CR{53az389_bq_ra}</p>
+</blockquote>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://kimtruth.github.io/2017/12/15/white-hacker-league-CodeRed-iOS-Baby/" data-id="ckor8g4nw006shqwyvc9cc4kg" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>seguir:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/k1mtruth" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/kimtruth/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/12/25/end-of-2017/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">més nou</strong>
+        <p class="article-nav-title">
+        
+            2017년 보안 결산
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/11/08/whitehat-contest-2017-PreQual-jail-235-pts/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">antic</strong>
+        <p class="article-nav-title">Whitehat contest 2017 PreQual - jail (235 pts.)</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/05/16/Frag-Attacks/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2021/05/16/Frag-Attacks/title.png)" alt="Frag Attacks" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Hacking/">Hacking</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Hacking/Network/">Network</a></p>
+                            <p class="item-title"><a href="/2021/05/16/Frag-Attacks/" class="title">Frag Attacks</a></p>
+                            <p class="item-date"><time datetime="2021-05-16T10:12:38.000Z" itemprop="datePublished">2021-05-16</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/09/27/2020-CCE-cms-again/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/09/27/2020-CCE-cms-again/0.png)" alt="2020 CCE - cms again" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Hacking/">Hacking</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Hacking/Web/">Web</a></p>
+                            <p class="item-title"><a href="/2020/09/27/2020-CCE-cms-again/" class="title">2020 CCE - cms again</a></p>
+                            <p class="item-date"><time datetime="2020-09-26T15:00:00.000Z" itemprop="datePublished">2020-09-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/09/27/2020-CCE-Wordpresso/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/09/27/2020-CCE-Wordpresso/0.png)" alt="2020 CCE - Wordpresso" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Hacking/">Hacking</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Hacking/Web/">Web</a></p>
+                            <p class="item-title"><a href="/2020/09/27/2020-CCE-Wordpresso/" class="title">2020 CCE - Wordpresso</a></p>
+                            <p class="item-date"><time datetime="2020-09-26T15:00:00.000Z" itemprop="datePublished">2020-09-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/09/27/2020-CCE-nomorephp/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/09/27/2020-CCE-nomorephp/0.png)" alt="2020 CCE - nomorephp" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Hacking/">Hacking</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Hacking/Web/">Web</a></p>
+                            <p class="item-title"><a href="/2020/09/27/2020-CCE-nomorephp/" class="title">2020 CCE - nomorephp</a></p>
+                            <p class="item-date"><time datetime="2020-09-26T15:00:00.000Z" itemprop="datePublished">2020-09-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/09/13/2020-Cyberoc-Vaccine-Paper/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/09/13/2020-Cyberoc-Vaccine-Paper/10.png)" alt="2020 Cyberoc - Vaccine Paper (Web)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Hacking/">Hacking</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Hacking/Web/">Web</a></p>
+                            <p class="item-title"><a href="/2020/09/13/2020-Cyberoc-Vaccine-Paper/" class="title">2020 Cyberoc - Vaccine Paper (Web)</a></p>
+                            <p class="item-date"><time datetime="2020-09-12T15:00:00.000Z" itemprop="datePublished">2020-09-13</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Development/">Development</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Development/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Development/iOS/">iOS</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/">Hacking</a><span class="category-list-count">60</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Crpto/">Crpto</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Crypto/">Crypto</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Forensic/">Forensic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Misc/">Misc</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Network/">Network</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Pwnable/">Pwnable</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Reversing/">Reversing</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Web/">Web</a><span class="category-list-count">15</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Question/">Question</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Story/">Story</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">arxius</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">etiquetes</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/0ctf-2017/">0ctf 2017</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/2020-CCE/">2020 CCE</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/2020-Cyberoc/">2020 Cyberoc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/">Algorithm</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Code-Blue-CTF-2018-Quals/">Code Blue CTF 2018 Quals</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codegate-CTF-2018-Final/">Codegate CTF 2018 Final</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codegate-CTF-2018-Preliminary/">Codegate CTF 2018 Preliminary</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codegate-CTF-2020-Preliminary/">Codegate CTF 2020 Preliminary</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crypto/">Crypto</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DEF-CON-CTF-Qualifier-2017/">DEF CON CTF Qualifier 2017</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DEFCON-2018/">DEFCON 2018</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FBCTF-2019/">FBCTF 2019</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HDCON-2017/">HDCON 2017</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HITCON-CTF-2017/">HITCON CTF 2017</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Harekaze-CTF/">Harekaze CTF</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maplestory/">Maplestory</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PCTF-2018/">PCTF 2018</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Project/">Project</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SHA-1/">SHA-1</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SHA2017-CTF/">SHA2017 CTF</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Samsung-CTF-PreQuals-2017/">Samsung CTF PreQuals 2017</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Samsung-CTF-PreQuals-2018/">Samsung CTF PreQuals 2018</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Samsung-CTF-Quals-2018/">Samsung CTF Quals 2018</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TAMU-CTF/">TAMU CTF</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Whitehat-Contest-2018-PreQual/">Whitehat Contest 2018 PreQual</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Whitehat-contest-2017-PreQual/">Whitehat contest 2017 PreQual</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WiFi/">WiFi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/defcon/">defcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwnable-kr/">pwnable.kr</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zer0pts-ctf-2020/">zer0pts ctf 2020</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/크리스마스-CTF/">크리스마스 CTF</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/화이트해커리그/">화이트해커리그</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">etiqueta cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/0ctf-2017/" style="font-size: 10px;">0ctf 2017</a> <a href="/tags/2020-CCE/" style="font-size: 13.33px;">2020 CCE</a> <a href="/tags/2020-Cyberoc/" style="font-size: 10px;">2020 Cyberoc</a> <a href="/tags/Algorithm/" style="font-size: 18.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Code-Blue-CTF-2018-Quals/" style="font-size: 11.67px;">Code Blue CTF 2018 Quals</a> <a href="/tags/Codegate-CTF-2018-Final/" style="font-size: 11.67px;">Codegate CTF 2018 Final</a> <a href="/tags/Codegate-CTF-2018-Preliminary/" style="font-size: 20px;">Codegate CTF 2018 Preliminary</a> <a href="/tags/Codegate-CTF-2020-Preliminary/" style="font-size: 10px;">Codegate CTF 2020 Preliminary</a> <a href="/tags/Crypto/" style="font-size: 10px;">Crypto</a> <a href="/tags/DEF-CON-CTF-Qualifier-2017/" style="font-size: 11.67px;">DEF CON CTF Qualifier 2017</a> <a href="/tags/DEFCON-2018/" style="font-size: 10px;">DEFCON 2018</a> <a href="/tags/FBCTF-2019/" style="font-size: 10px;">FBCTF 2019</a> <a href="/tags/HDCON-2017/" style="font-size: 10px;">HDCON 2017</a> <a href="/tags/HITCON-CTF-2017/" style="font-size: 10px;">HITCON CTF 2017</a> <a href="/tags/Harekaze-CTF/" style="font-size: 11.67px;">Harekaze CTF</a> <a href="/tags/Maplestory/" style="font-size: 10px;">Maplestory</a> <a href="/tags/Math/" style="font-size: 13.33px;">Math</a> <a href="/tags/PCTF-2018/" style="font-size: 13.33px;">PCTF 2018</a> <a href="/tags/Project/" style="font-size: 10px;">Project</a> <a href="/tags/SHA-1/" style="font-size: 10px;">SHA-1</a> <a href="/tags/SHA2017-CTF/" style="font-size: 15px;">SHA2017 CTF</a> <a href="/tags/Samsung-CTF-PreQuals-2017/" style="font-size: 16.67px;">Samsung CTF PreQuals 2017</a> <a href="/tags/Samsung-CTF-PreQuals-2018/" style="font-size: 11.67px;">Samsung CTF PreQuals 2018</a> <a href="/tags/Samsung-CTF-Quals-2018/" style="font-size: 13.33px;">Samsung CTF Quals 2018</a> <a href="/tags/TAMU-CTF/" style="font-size: 10px;">TAMU CTF</a> <a href="/tags/Whitehat-Contest-2018-PreQual/" style="font-size: 11.67px;">Whitehat Contest 2018 PreQual</a> <a href="/tags/Whitehat-contest-2017-PreQual/" style="font-size: 10px;">Whitehat contest 2017 PreQual</a> <a href="/tags/WiFi/" style="font-size: 10px;">WiFi</a> <a href="/tags/defcon/" style="font-size: 10px;">defcon</a> <a href="/tags/iOS/" style="font-size: 16.67px;">iOS</a> <a href="/tags/pwnable-kr/" style="font-size: 10px;">pwnable.kr</a> <a href="/tags/zer0pts-ctf-2020/" style="font-size: 10px;">zer0pts ctf 2020</a> <a href="/tags/크리스마스-CTF/" style="font-size: 10px;">크리스마스 CTF</a> <a href="/tags/화이트해커리그/" style="font-size: 10px;">화이트해커리그</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <!--
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+            -->
+                <p>&copy; 2021 Youngho Kim</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'm1ku';
+    
+    
+    var disqus_url = 'https://kimtruth.github.io/2017/12/15/white-hacker-league-CodeRed-iOS-Baby/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

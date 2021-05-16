@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    
+    <title>Christmas CTF - Simple_Bit | kimtruth&#39;s Blog</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="크리스마스 CTF">
+    
+    <meta name="description" content="역연산 해주면 되는 문제였다. 먼저 ida hexray를 이용해서 함수들을 살펴보자 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808">
+<meta name="keywords" content="크리스마스 CTF">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Christmas CTF - Simple_Bit">
+<meta property="og:url" content="https://kimtruth.github.io/2017/12/26/christmas-ctf-reversing-simple-bit/index.html">
+<meta property="og:site_name" content="kimtruth&#39;s Blog">
+<meta property="og:description" content="역연산 해주면 되는 문제였다. 먼저 ida hexray를 이용해서 함수들을 살펴보자 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808">
+<meta property="og:locale" content="kr">
+<meta property="og:image" content="https://kimtruth.github.io/2017/12/26/christmas-ctf-reversing-simple-bit/1.png">
+<meta property="og:updated_time" content="2018-03-04T03:11:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Christmas CTF - Simple_Bit">
+<meta name="twitter:description" content="역연산 해주면 되는 문제였다. 먼저 ida hexray를 이용해서 함수들을 살펴보자 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808">
+<meta name="twitter:image" content="https://kimtruth.github.io/2017/12/26/christmas-ctf-reversing-simple-bit/1.png">
+<meta property="fb:admins" content="1984693938443783">
+<meta property="fb:app_id" content="1984693938443783">
+    
+
+    
+
+    
+        <link rel="icon" href="/images/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-88959679-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+
+<link rel="alternate" href="/rss2.xml" title="kimtruth's Blog" type="application/rss+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+            <!--
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+            -->
+            <div id="header-title" style="text-align:left">
+                <h1>
+                    <a href="/" style="font-size:40px;color:#fff; font-weight:bold; font-style: italic;text-decoration: none;">kimtruth's Blog</a>
+                </h1>
+            </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Inici</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Development/">Development</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Development/Algorithm/">Algorithm</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Development/iOS/">iOS</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/">Hacking</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Crpto/">Crpto</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Crypto/">Crypto</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Forensic/">Forensic</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Misc/">Misc</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Network/">Network</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Pwnable/">Pwnable</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Reversing/">Reversing</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Web/">Web</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Question/">Question</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Story/">Story</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="https://www.rocketpunch.com/@kimtruth">Quant a</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Cercar" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'categories',
+            TAGS: 'etiquetes',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Hacking/">Hacking</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Hacking/Reversing/">Reversing</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-christmas-ctf-reversing-simple-bit" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Christmas CTF - Simple_Bit
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/12/26/christmas-ctf-reversing-simple-bit/" class="article-date">
+            <time datetime="2017-12-25T16:01:34.000Z" itemprop="datePublished">2017-12-26</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/크리스마스-CTF/">크리스마스 CTF</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <img src="/2017/12/26/christmas-ctf-reversing-simple-bit/1.png">
+<p>역연산 해주면 되는 문제였다.</p>
+<p>먼저 ida hexray를 이용해서 함수들을 살펴보자</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br></pre></td><td class="code"><pre><span class="line">__int64 __<span class="function">fastcall <span class="title">main</span><span class="params">(__int64 a1, <span class="keyword">char</span> **a2, <span class="keyword">char</span> **a3)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  __int64 result; <span class="comment">// rax@4</span></span><br><span class="line">  __int64 v4; <span class="comment">// rsi@4</span></span><br><span class="line">  <span class="keyword">char</span> buf[<span class="number">264</span>]; <span class="comment">// [sp+10h] [bp-110h]@1</span></span><br><span class="line">  __int64 canary; <span class="comment">// [sp+118h] [bp-8h]@1</span></span><br><span class="line"></span><br><span class="line">  canary = *MK_FP(__FS__, <span class="number">40L</span>L);</span><br><span class="line">  <span class="built_in">memset</span>(buf, <span class="number">0</span>, <span class="number">0x100</span>uLL);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"Input : "</span>, a2, buf);</span><br><span class="line">  fflush(<span class="built_in">stdout</span>);</span><br><span class="line">  buf[(<span class="keyword">signed</span> <span class="keyword">int</span>)((<span class="keyword">unsigned</span> __int64)read(<span class="number">0</span>, buf, <span class="number">0x100</span>uLL) - <span class="number">1</span>)] = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> ( (<span class="keyword">unsigned</span> <span class="keyword">int</span>)check(buf) )</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">"Correct"</span>);</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">"Wrong"</span>);</span><br><span class="line">  result = <span class="number">0L</span>L;</span><br><span class="line">  v4 = *MK_FP(__FS__, <span class="number">40L</span>L) ^ canary;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">signed</span> __int64 __<span class="function">fastcall <span class="title">check</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *input)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">signed</span> __int64 result; <span class="comment">// rax@17</span></span><br><span class="line">  __int64 v2; <span class="comment">// rsi@21</span></span><br><span class="line">  <span class="keyword">int</span> v3; <span class="comment">// [sp+14h] [bp-402Ch]@8</span></span><br><span class="line">  <span class="keyword">int</span> i; <span class="comment">// [sp+18h] [bp-4028h]@1</span></span><br><span class="line">  <span class="keyword">int</span> j; <span class="comment">// [sp+1Ch] [bp-4024h]@2</span></span><br><span class="line">  <span class="keyword">signed</span> <span class="keyword">int</span> k; <span class="comment">// [sp+20h] [bp-4020h]@7</span></span><br><span class="line">  <span class="keyword">int</span> l; <span class="comment">// [sp+24h] [bp-401Ch]@8</span></span><br><span class="line">  <span class="keyword">signed</span> <span class="keyword">int</span> m; <span class="comment">// [sp+28h] [bp-4018h]@15</span></span><br><span class="line">  <span class="keyword">int</span> length; <span class="comment">// [sp+2Ch] [bp-4014h]@1</span></span><br><span class="line">  <span class="keyword">int</span> arr[<span class="number">2048</span>]; <span class="comment">// [sp+30h] [bp-4010h]@1</span></span><br><span class="line">  <span class="keyword">int</span> goal[<span class="number">288</span>]; <span class="comment">// [sp+2030h] [bp-2010h]@1</span></span><br><span class="line">  __int64 canary; <span class="comment">// [sp+4038h] [bp-8h]@1</span></span><br><span class="line"></span><br><span class="line">  canary = *MK_FP(__FS__, <span class="number">40L</span>L);</span><br><span class="line">  <span class="built_in">memset</span>(arr, <span class="number">0</span>, <span class="keyword">sizeof</span>(arr));</span><br><span class="line">  <span class="built_in">memset</span>(goal, <span class="number">0</span>, <span class="number">0x2000</span>uLL);</span><br><span class="line">  goal[<span class="number">2</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">3</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">4</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">8</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">9</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">11</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">13</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">16</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">20</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">21</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">22</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">28</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">30</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">33</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">35</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">36</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">37</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">40</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">41</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">48</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">49</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">51</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">53</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">54</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">60</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">61</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">63</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">64</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">65</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">67</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">68</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">73</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">76</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">78</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">80</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">85</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">86</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">87</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">89</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">90</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">91</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">95</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">96</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">99</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">100</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">101</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">102</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">104</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">110</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">111</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">116</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">117</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">120</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">121</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">122</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">125</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">126</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">132</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">135</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">140</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">142</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">144</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">145</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">146</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">147</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">149</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">150</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">151</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">154</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">157</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">162</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">167</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">171</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">173</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">174</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">175</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">176</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">179</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">180</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">182</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">184</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">185</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">186</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">191</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">193</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">196</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">198</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">201</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">203</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">204</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">205</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">206</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">208</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">209</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">210</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">216</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">218</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">221</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">222</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">226</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">227</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">228</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">229</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">230</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">231</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">234</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">237</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">239</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">240</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">242</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">245</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">247</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">251</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">254</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">259</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">263</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">264</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">268</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">269</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">271</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">274</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">276</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">277</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">279</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">280</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">282</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">283</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">284</span>] = <span class="number">1</span>;</span><br><span class="line">  goal[<span class="number">287</span>] = <span class="number">1</span>;</span><br><span class="line">  length = <span class="built_in">strlen</span>(input);</span><br><span class="line">  <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt; length; ++i )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">for</span> ( j = <span class="number">8</span> * i; j &lt; <span class="number">8</span> * (i + <span class="number">1</span>); ++j )</span><br><span class="line">    &#123;</span><br><span class="line">      arr[j] = input[i] &amp; <span class="number">1</span>;</span><br><span class="line">      input[i] &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> ( k = <span class="number">0</span>; k &lt;= <span class="number">15</span>; ++k )</span><br><span class="line">  &#123;</span><br><span class="line">    v3 = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> ( l = <span class="number">0</span>; l &lt; <span class="number">8</span> * length; ++l )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> ( arr[l] )</span><br><span class="line">        v3 ^= <span class="number">1u</span>;</span><br><span class="line">      arr[l] = v3;</span><br><span class="line">    &#125;</span><br><span class="line">    shuffle(arr, <span class="number">8</span> * length);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> ( m = <span class="number">0</span>; m &lt;= <span class="number">0x7FF</span>; ++m )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( arr[m] != goal[m] )</span><br><span class="line">    &#123;</span><br><span class="line">      result = <span class="number">0L</span>L;</span><br><span class="line">      <span class="keyword">goto</span> LABEL_21;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  result = <span class="number">1L</span>L;</span><br><span class="line">LABEL_21:</span><br><span class="line">  v2 = *MK_FP(__FS__, <span class="number">40L</span>L) ^ canary;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">_DWORD *__<span class="function">fastcall <span class="title">shuffle</span><span class="params">(_DWORD *arr, <span class="keyword">signed</span> <span class="keyword">int</span> length)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  _DWORD *result; <span class="comment">// rax@1</span></span><br><span class="line">  <span class="keyword">int</span> i; <span class="comment">// [sp+18h] [bp-8h]@1</span></span><br><span class="line">  <span class="keyword">int</span> r; <span class="comment">// [sp+1Ch] [bp-4h]@2</span></span><br><span class="line"></span><br><span class="line">  result = (_DWORD *)(<span class="keyword">unsigned</span> <span class="keyword">int</span>)(length - <span class="number">1</span>);</span><br><span class="line">  <span class="keyword">for</span> ( i = length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i )</span><br><span class="line">  &#123;</span><br><span class="line">    r = rand() % length;</span><br><span class="line">    result = (_DWORD *)(<span class="keyword">unsigned</span> <span class="keyword">int</span>)i;</span><br><span class="line">    <span class="keyword">if</span> ( i != r )</span><br><span class="line">    &#123;</span><br><span class="line">      arr[i] ^= arr[r];                         <span class="comment">// swap(arr[i], arr[r])</span></span><br><span class="line">      arr[r] ^= arr[i];</span><br><span class="line">      result = &amp;arr[i];</span><br><span class="line">      *result ^= arr[r];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>루틴을 정리해보면 유저에게 입력을 받고 그 글자를 2진수로 바꾼다음 뒤집어서 넣는다.<br>그리고 어떠한 연산을 한 뒤에 배열을 섞어준다. 이걸 16번 반복하고 <code>goal</code>배열과 결과를 비교해본다.</p>
+<p>해당 프로그램에서 <code>shuffle</code>에 <code>rand()</code>를 사용하고 있는 것을 볼 수 있지만 <code>srand</code>를 사용하지 않았기에 <code>rand</code>는 항상 동일한 값이 나오며 이것을 이용해서 우리는 <code>shuffle</code>을 역연산 하는 행위도 할 수 있다.</p>
+<h3 id="solve-py"><a href="#solve-py" class="headerlink" title="solve.py"></a>solve.py</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> ctypes <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shuffle</span><span class="params">(arr, rand)</span>:</span></span><br><span class="line">    rand = rand[::<span class="number">-1</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(rand)):</span><br><span class="line">        arr[i], arr[rand[i]] = arr[rand[i]], arr[i]</span><br><span class="line"></span><br><span class="line">length = <span class="number">36</span></span><br><span class="line"></span><br><span class="line">libc = CDLL(<span class="string">'libc.so.6'</span>)</span><br><span class="line"></span><br><span class="line">rands = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">16</span>):</span><br><span class="line">    rand = []</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(length * <span class="number">8</span>):</span><br><span class="line">        rand.append(libc.rand() % (length * <span class="number">8</span>))</span><br><span class="line">    rands.append(rand)</span><br><span class="line"></span><br><span class="line">arr = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">arr += [<span class="number">0</span>] * (<span class="number">0x800</span> - len(arr))</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">15</span>, <span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line">    shuffle(arr, rands[i])</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">8</span> * length - <span class="number">1</span>, <span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line">        <span class="keyword">if</span> j == <span class="number">0</span>:</span><br><span class="line">            arr[j] = arr[j] ^ <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            arr[j] = arr[j] ^ arr[j<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line">bins = <span class="string">''</span>.join(map(str, arr))</span><br><span class="line">output = <span class="string">''</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(bins), <span class="number">8</span>):</span><br><span class="line">    output += chr(int(bins[i:i+<span class="number">8</span>][::<span class="number">-1</span>], <span class="number">2</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> output <span class="comment"># XMAS&#123;S1mp1e_diff3r3nt1cal_c0d1ng_:p&#125;</span></span><br></pre></td></tr></table></figure>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://kimtruth.github.io/2017/12/26/christmas-ctf-reversing-simple-bit/" data-id="ckor8g4ni005hhqwywk0tz86l" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>seguir:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/k1mtruth" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/kimtruth/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/01/31/0ctf-2017-Babyheap/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">més nou</strong>
+        <p class="article-nav-title">
+        
+            0ctf 2017 - Babyheap
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/12/25/end-of-2017/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">antic</strong>
+        <p class="article-nav-title">2017년 보안 결산</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/05/16/Frag-Attacks/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2021/05/16/Frag-Attacks/title.png)" alt="Frag Attacks" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Hacking/">Hacking</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Hacking/Network/">Network</a></p>
+                            <p class="item-title"><a href="/2021/05/16/Frag-Attacks/" class="title">Frag Attacks</a></p>
+                            <p class="item-date"><time datetime="2021-05-16T10:12:38.000Z" itemprop="datePublished">2021-05-16</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/09/27/2020-CCE-cms-again/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/09/27/2020-CCE-cms-again/0.png)" alt="2020 CCE - cms again" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Hacking/">Hacking</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Hacking/Web/">Web</a></p>
+                            <p class="item-title"><a href="/2020/09/27/2020-CCE-cms-again/" class="title">2020 CCE - cms again</a></p>
+                            <p class="item-date"><time datetime="2020-09-26T15:00:00.000Z" itemprop="datePublished">2020-09-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/09/27/2020-CCE-Wordpresso/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/09/27/2020-CCE-Wordpresso/0.png)" alt="2020 CCE - Wordpresso" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Hacking/">Hacking</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Hacking/Web/">Web</a></p>
+                            <p class="item-title"><a href="/2020/09/27/2020-CCE-Wordpresso/" class="title">2020 CCE - Wordpresso</a></p>
+                            <p class="item-date"><time datetime="2020-09-26T15:00:00.000Z" itemprop="datePublished">2020-09-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/09/27/2020-CCE-nomorephp/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/09/27/2020-CCE-nomorephp/0.png)" alt="2020 CCE - nomorephp" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Hacking/">Hacking</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Hacking/Web/">Web</a></p>
+                            <p class="item-title"><a href="/2020/09/27/2020-CCE-nomorephp/" class="title">2020 CCE - nomorephp</a></p>
+                            <p class="item-date"><time datetime="2020-09-26T15:00:00.000Z" itemprop="datePublished">2020-09-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/09/13/2020-Cyberoc-Vaccine-Paper/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/09/13/2020-Cyberoc-Vaccine-Paper/10.png)" alt="2020 Cyberoc - Vaccine Paper (Web)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Hacking/">Hacking</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Hacking/Web/">Web</a></p>
+                            <p class="item-title"><a href="/2020/09/13/2020-Cyberoc-Vaccine-Paper/" class="title">2020 Cyberoc - Vaccine Paper (Web)</a></p>
+                            <p class="item-date"><time datetime="2020-09-12T15:00:00.000Z" itemprop="datePublished">2020-09-13</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Development/">Development</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Development/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Development/iOS/">iOS</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/">Hacking</a><span class="category-list-count">60</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Crpto/">Crpto</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Crypto/">Crypto</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Forensic/">Forensic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Misc/">Misc</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Network/">Network</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Pwnable/">Pwnable</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Reversing/">Reversing</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Web/">Web</a><span class="category-list-count">15</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Question/">Question</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Story/">Story</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">arxius</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">etiquetes</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/0ctf-2017/">0ctf 2017</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/2020-CCE/">2020 CCE</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/2020-Cyberoc/">2020 Cyberoc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/">Algorithm</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Code-Blue-CTF-2018-Quals/">Code Blue CTF 2018 Quals</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codegate-CTF-2018-Final/">Codegate CTF 2018 Final</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codegate-CTF-2018-Preliminary/">Codegate CTF 2018 Preliminary</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codegate-CTF-2020-Preliminary/">Codegate CTF 2020 Preliminary</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crypto/">Crypto</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DEF-CON-CTF-Qualifier-2017/">DEF CON CTF Qualifier 2017</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DEFCON-2018/">DEFCON 2018</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FBCTF-2019/">FBCTF 2019</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HDCON-2017/">HDCON 2017</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HITCON-CTF-2017/">HITCON CTF 2017</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Harekaze-CTF/">Harekaze CTF</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maplestory/">Maplestory</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PCTF-2018/">PCTF 2018</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Project/">Project</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SHA-1/">SHA-1</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SHA2017-CTF/">SHA2017 CTF</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Samsung-CTF-PreQuals-2017/">Samsung CTF PreQuals 2017</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Samsung-CTF-PreQuals-2018/">Samsung CTF PreQuals 2018</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Samsung-CTF-Quals-2018/">Samsung CTF Quals 2018</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TAMU-CTF/">TAMU CTF</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Whitehat-Contest-2018-PreQual/">Whitehat Contest 2018 PreQual</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Whitehat-contest-2017-PreQual/">Whitehat contest 2017 PreQual</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WiFi/">WiFi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/defcon/">defcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwnable-kr/">pwnable.kr</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zer0pts-ctf-2020/">zer0pts ctf 2020</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/크리스마스-CTF/">크리스마스 CTF</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/화이트해커리그/">화이트해커리그</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">etiqueta cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/0ctf-2017/" style="font-size: 10px;">0ctf 2017</a> <a href="/tags/2020-CCE/" style="font-size: 13.33px;">2020 CCE</a> <a href="/tags/2020-Cyberoc/" style="font-size: 10px;">2020 Cyberoc</a> <a href="/tags/Algorithm/" style="font-size: 18.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Code-Blue-CTF-2018-Quals/" style="font-size: 11.67px;">Code Blue CTF 2018 Quals</a> <a href="/tags/Codegate-CTF-2018-Final/" style="font-size: 11.67px;">Codegate CTF 2018 Final</a> <a href="/tags/Codegate-CTF-2018-Preliminary/" style="font-size: 20px;">Codegate CTF 2018 Preliminary</a> <a href="/tags/Codegate-CTF-2020-Preliminary/" style="font-size: 10px;">Codegate CTF 2020 Preliminary</a> <a href="/tags/Crypto/" style="font-size: 10px;">Crypto</a> <a href="/tags/DEF-CON-CTF-Qualifier-2017/" style="font-size: 11.67px;">DEF CON CTF Qualifier 2017</a> <a href="/tags/DEFCON-2018/" style="font-size: 10px;">DEFCON 2018</a> <a href="/tags/FBCTF-2019/" style="font-size: 10px;">FBCTF 2019</a> <a href="/tags/HDCON-2017/" style="font-size: 10px;">HDCON 2017</a> <a href="/tags/HITCON-CTF-2017/" style="font-size: 10px;">HITCON CTF 2017</a> <a href="/tags/Harekaze-CTF/" style="font-size: 11.67px;">Harekaze CTF</a> <a href="/tags/Maplestory/" style="font-size: 10px;">Maplestory</a> <a href="/tags/Math/" style="font-size: 13.33px;">Math</a> <a href="/tags/PCTF-2018/" style="font-size: 13.33px;">PCTF 2018</a> <a href="/tags/Project/" style="font-size: 10px;">Project</a> <a href="/tags/SHA-1/" style="font-size: 10px;">SHA-1</a> <a href="/tags/SHA2017-CTF/" style="font-size: 15px;">SHA2017 CTF</a> <a href="/tags/Samsung-CTF-PreQuals-2017/" style="font-size: 16.67px;">Samsung CTF PreQuals 2017</a> <a href="/tags/Samsung-CTF-PreQuals-2018/" style="font-size: 11.67px;">Samsung CTF PreQuals 2018</a> <a href="/tags/Samsung-CTF-Quals-2018/" style="font-size: 13.33px;">Samsung CTF Quals 2018</a> <a href="/tags/TAMU-CTF/" style="font-size: 10px;">TAMU CTF</a> <a href="/tags/Whitehat-Contest-2018-PreQual/" style="font-size: 11.67px;">Whitehat Contest 2018 PreQual</a> <a href="/tags/Whitehat-contest-2017-PreQual/" style="font-size: 10px;">Whitehat contest 2017 PreQual</a> <a href="/tags/WiFi/" style="font-size: 10px;">WiFi</a> <a href="/tags/defcon/" style="font-size: 10px;">defcon</a> <a href="/tags/iOS/" style="font-size: 16.67px;">iOS</a> <a href="/tags/pwnable-kr/" style="font-size: 10px;">pwnable.kr</a> <a href="/tags/zer0pts-ctf-2020/" style="font-size: 10px;">zer0pts ctf 2020</a> <a href="/tags/크리스마스-CTF/" style="font-size: 10px;">크리스마스 CTF</a> <a href="/tags/화이트해커리그/" style="font-size: 10px;">화이트해커리그</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <!--
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+            -->
+                <p>&copy; 2021 Youngho Kim</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'm1ku';
+    
+    
+    var disqus_url = 'https://kimtruth.github.io/2017/12/26/christmas-ctf-reversing-simple-bit/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

